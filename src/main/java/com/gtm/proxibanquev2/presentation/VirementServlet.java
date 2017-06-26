@@ -50,12 +50,12 @@ public class VirementServlet extends HttpServlet {
 		int montant=Integer.parseInt(request.getParameter("sommeVirement"));	
 		
 		//Instanciation d'un objet virement
-		Compte compteDebite=new Compte(numDebite,compteDebite.getSolde());
-		Compte compteCredite= new Compte(numCredite,compteCredite.getSolde());
-		Virement virement=new Virement(montant,compteCredite ,compteDebite);
+		//Compte compteDebite=new Compte(numDebite,compteDebite.getSolde());
+		//Compte compteCredite= new Compte(numCredite,compteCredite.getSolde());
+	//	Virement virement=new Virement(montant,compteCredite ,compteDebite);
 		
 		//Passage à la couche service
-		service.effectuerVirement(virement);
+		//service.effectuerVirement(virement);
 		
 	}
 		

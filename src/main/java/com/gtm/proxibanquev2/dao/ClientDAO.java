@@ -231,7 +231,6 @@ public class ClientDAO {
 
 	}
 
-<<<<<<< HEAD
 /*	public void getListeCLientConseiller(Conseiller conseiller) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
@@ -275,7 +274,6 @@ public class ClientDAO {
 		
 		
 	} */
-=======
 	public void getListeCLientConseiller(Conseiller conseiller) {
 		// TODO Auto-generated method stub
 	}
@@ -284,6 +282,5 @@ public class ClientDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
->>>>>>> a53ba1844a42de0be6c561c78a3810fad04ba6a0
 
 }

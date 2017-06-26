@@ -57,7 +57,7 @@ public class ConseillerService {
 	public void ajoutCompte(Compte compte, Client client){
 		
 		CompteDAO compteDao = new CompteDAO();
-		compteDao.addCompteBase(client, compte);
+		compteDao.addCompteBase( compte);
 	}
 	
 	public Client obtenirClient(int id){

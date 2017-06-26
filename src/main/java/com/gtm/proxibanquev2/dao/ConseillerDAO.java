@@ -19,10 +19,6 @@ import javax.persistence.Query;
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Conseiller;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> a53ba1844a42de0be6c561c78a3810fad04ba6a0
 public class ConseillerDAO {
 
 	public Conseiller addConseillerBase(Conseiller conseiller) {
@@ -126,9 +122,9 @@ public class ConseillerDAO {
 
 			while (rs.next()) {
 
-				Conseiller tempocons = new Conseiller(rs.getInt("ID"), rs.getString("Login"),
-						rs.getString("Mdp"));
-				listeconseiller.add(tempocons);
+			//	Conseiller tempocons = new Conseiller(rs.getInt("ID"), rs.getString("Login"),
+			//			rs.getString("Mdp"));
+			//	listeconseiller.add(tempocons);
 
 			}
 		} catch (SQLException e) {
@@ -176,7 +172,7 @@ public class ConseillerDAO {
 
 			String  mdp = rs.getString(3);
 
-			 conseillertrouve = new Conseiller(id, log, mdp);
+			// conseillertrouve = new Conseiller(id, log, mdp);
 
 			return conseillertrouve;
 		} catch (SQLException e) {
@@ -241,7 +237,7 @@ public class ConseillerDAO {
 			 mdp = rs.getString(3);
 			System.out.println("Lemdp du conseiller est " + mdp);
 
-			conseiller = new Conseiller(id,log,mdp);				
+			//conseiller = new Conseiller(id,log,mdp);				
 
 			return conseiller;
 
