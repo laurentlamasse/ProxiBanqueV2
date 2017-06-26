@@ -8,19 +8,20 @@ import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Compte;
 import com.gtm.proxibanquev2.domaine.Virement;
 
+import exception.VirementException;
+
 public class ConseillerService {
 
-	public void effectuerVirement(Virement virement){
-		throws ExceptionVirement;
-		int numCompteDebite=virement.getNumCompteDebite(),
-			numCompteCredite=virement.getNumCompteCredite();
-		Compte compteCredite, compteDebite;
-		if 
-			(compteCredite.getSolde()<0)
-			throw ExceptionVirement;
-		else
-			(compteCredite.setSolde(solde+virement.getMontantVirer());)
-			
+	public void effectuerVirement(Virement virement) throws VirementException {
+		float montant= virement.getMontantVirer();
+		
+		if (virement.getMontantVirer() > virement.getCompteDebite().getSolde())
+			throw new VirementException();
+		else {
+				virement.getCompteDebite().setSolde(virement.getCompteDebite().getSolde() - montant );
+				virement.getCompteCredite().setSolde(virement.getCompteCredite().getSolde() + montant);
+			 } 
+		
 		CompteDAO compteDao= new CompteDAO();
 		compteDao.effectuerVirement(virement);
 	}

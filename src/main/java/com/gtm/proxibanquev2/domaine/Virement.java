@@ -3,13 +3,13 @@ package com.gtm.proxibanquev2.domaine;
 public class Virement {
 
 	//Proprietes
-	private int numCompteDebite, numCompteCredite;
+	Compte compteCredite, compteDebite;
 	float montantVirer;
 	
 	//Constructeur
-	public Virement(int numCompteDebite, int numCompteCredite, float montantVirer){
-		this.numCompteDebite=numCompteDebite;
-		this.numCompteCredite=numCompteCredite;
+	public Virement(float montantVirer, Compte compteCredite, Compte compteDebite){
+		this.compteCredite=compteCredite;
+		this.compteDebite=compteDebite;
 		this.montantVirer=montantVirer;
 	}
 	
@@ -19,20 +19,20 @@ public class Virement {
 	}
 
 	//Getters setters
-	public int getNumCompteDebite() {
-		return numCompteDebite;
+	public Compte getCompteCredite() {
+		return compteCredite;
 	}
 
-	public void setNumCompteDebite(int numCompteDebite) {
-		this.numCompteDebite = numCompteDebite;
+	public void setCompteCredite(Compte compteCredite) {
+		this.compteCredite = compteCredite;
 	}
 
-	public int getNumCompteCredite() {
-		return numCompteCredite;
+	public Compte getCompteDebite() {
+		return compteDebite;
 	}
 
-	public void setNumCompteCredite(int numCompteCredite) {
-		this.numCompteCredite = numCompteCredite;
+	public void setCompteDebite(Compte compteDebite) {
+		this.compteDebite = compteDebite;
 	}
 
 	public float getMontantVirer() {
@@ -42,12 +42,14 @@ public class Virement {
 	public void setMontantVirer(float montantVirer) {
 		this.montantVirer = montantVirer;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "Transaction [numCompteDebite=" + numCompteDebite + ", numCompteCredite=" + numCompteCredite
 				+ ", montantVirer=" + montantVirer + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
-	
+
+
 }
