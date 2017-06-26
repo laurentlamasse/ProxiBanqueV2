@@ -7,8 +7,7 @@ import com.gtm.proxibanquev2.dao.CompteDAO;
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Compte;
 import com.gtm.proxibanquev2.domaine.Virement;
-
-import exception.VirementException;
+import com.gtm.proxibanquev2.exception.VirementException;
 
 public class ConseillerService {
 
@@ -51,7 +50,7 @@ public class ConseillerService {
 	public List<Compte> getListeCompte(Client client){
 		List<Compte> listeComptes;
 		CompteDAO compteDao= new CompteDAO();
-		listeComptes= compteDao.getListeCompte(client);
+		listeComptes= (List<Compte>) compteDao.getListeCompte();
 		return listeComptes;
 	}
 	
@@ -62,9 +61,10 @@ public class ConseillerService {
 	}
 	
 	public Client obtenirClient(int id){
-		Client client;
+		//TODO a faire
+		Client client = null;
 		ClientDAO clientDao=new ClientDAO();
-		client=clientDao.getClient(id);
+		//client=clientDao.getClient(id);
 		return client;
 	}
 }

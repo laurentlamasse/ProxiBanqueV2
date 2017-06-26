@@ -70,14 +70,14 @@
 		<div class="col-lg-12">
 			<div class="corps-entete">EFFECTUER UN VIREMENT</div>
 			<div class="corps-contenu">
-				<form>
+				<form method="post" action="ProxyBanqueV2/VirementServlet">
 					<div class="form-group">
 						<label for="debiteurVirement">Identifiant du compte à débiter</label>
 						<input id="debiteurVirement" class="form-control" name="debiteurVirement" type="number" placeholder="Identifiant du débiteur">
 					</div>
 					<div class="form-group">
 						<label for="créditeurVirement">Identifiant du compte à créditer</label>
-						<input id="créditeurVirement" class="form-control" name="créditeurVirement" type="number" placeholder="Identifiant du créditeur">
+						<input id="créditeurVirement" class="form-control" name="crediteurVirement" type="number" placeholder="Identifiant du créditeur">
 					</div>
 					<div class="form-group">
 						<label for="sommeVirement">Somme</label>

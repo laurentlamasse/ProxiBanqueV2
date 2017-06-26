@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,7 +19,10 @@ import javax.persistence.Query;
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Conseiller;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a53ba1844a42de0be6c561c78a3810fad04ba6a0
 public class ConseillerDAO {
 
 	public Conseiller addConseillerBase(Conseiller conseiller) {
@@ -100,7 +104,7 @@ public class ConseillerDAO {
 		return false;
 	}
 
-	public Collection<Conseiller> getListeConseiller() {
+	public List<Conseiller> getListeConseiller() {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";

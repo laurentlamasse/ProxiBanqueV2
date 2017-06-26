@@ -71,7 +71,7 @@
 			<div class="corps-entete">CRÉER UN CLIENT</div>
 			<div class="corps-contenu">
 				Remplissez le formulaire suivante pour créer votre nouveau client :
-				<form>
+				<form action="ProxyBanqueV2/AjoutClientServlet" method="post">
 					<div class="form-group">
 						<label for="createNomClient">Nom</label>
 						<input id="createNomClient" class="form-control" name="createNomClient" type="text" placeholder="Entrez le nom">
