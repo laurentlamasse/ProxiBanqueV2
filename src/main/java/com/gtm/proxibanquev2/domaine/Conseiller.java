@@ -6,6 +6,11 @@ public class Conseiller extends Employe{
 		super(id, login, mdp);
 	}
 
+	public Conseiller( String login, String mdp) {
+		super( login, mdp);
+	}
+
+	
 	//constructeur vide
 	public Conseiller(){
 		

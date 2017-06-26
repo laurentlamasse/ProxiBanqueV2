@@ -87,5 +87,24 @@ public class ConseillerDAO {
 		return conseiller2;
 
 	}
+	
+	public Conseiller getConseillerFromLogin (String login){
+		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		Conseiller conseiller = em.find(Conseiller.class, login);
+
+		tx.commit();
+
+		em.close();
+		emf.close();
+
+		return conseiller;
+		
+		
+	}
 
 }

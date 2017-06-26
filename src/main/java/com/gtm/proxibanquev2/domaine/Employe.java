@@ -13,6 +13,11 @@ public abstract class Employe {
 		this.id=id;
 	}
 	
+	public Employe( String login, String mdp){
+		this.login=login;
+		this.mdp=mdp;
+	}
+	
 	//Constructeur vide
 	public Employe(){
 		
