@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 26 Juin 2017 à 14:57
+-- Généré le :  Lun 26 Juin 2017 à 15:23
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -29,13 +29,14 @@ USE `proxybanque`;
 --
 
 CREATE TABLE `client` (
-  `Nom` varchar(20) NOT NULL,
-  `Prenom` varchar(20) NOT NULL,
-  `Email` varchar(20) NOT NULL,
-  `Adresse` varchar(20) NOT NULL,
-  `NumeroClient` int(10) NOT NULL,
-  `NumeroConseiller` int(10) NOT NULL,
-  `TypeClient` varchar(20) NOT NULL DEFAULT 'Particulier'
+  `nom` varchar(20) NOT NULL,
+  `prenom` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `adresse` varchar(20) NOT NULL,
+  `codePostal` int(10) NOT NULL,
+  `numeroClient` int(10) NOT NULL,
+  `numeroConseiller` int(10) NOT NULL,
+  `typeClient` varchar(20) NOT NULL DEFAULT 'Particulier'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -57,10 +58,10 @@ CREATE TABLE `compte` (
 --
 
 CREATE TABLE `comptecourant` (
-  `NumeroCompte` int(10) NOT NULL,
-  `Plafond` int(10) NOT NULL,
-  `IDclient` int(10) NOT NULL,
-  `Solde` int(10) NOT NULL
+  `numeroCompte` int(10) NOT NULL,
+  `plafond` int(10) NOT NULL,
+  `idclient` int(10) NOT NULL,
+  `solde` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -70,10 +71,10 @@ CREATE TABLE `comptecourant` (
 --
 
 CREATE TABLE `compteepargne` (
-  `NumeroCompte` int(10) NOT NULL,
-  `Solde` int(10) NOT NULL,
-  `NumeroClient` int(10) NOT NULL,
-  `Remuneration` int(10) NOT NULL
+  `numeroCompte` int(10) NOT NULL,
+  `solde` int(10) NOT NULL,
+  `numeroClient` int(10) NOT NULL,
+  `remuneration` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -83,11 +84,11 @@ CREATE TABLE `compteepargne` (
 --
 
 CREATE TABLE `conseiller` (
-  `Nom` varchar(20) NOT NULL,
-  `Prenom` varchar(20) NOT NULL,
-  `ID` int(10) NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `prenom` varchar(20) NOT NULL,
+  `id` int(10) NOT NULL,
   `login` varchar(20) NOT NULL,
-  `Mdp` varchar(20) NOT NULL
+  `mdp` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -98,7 +99,7 @@ CREATE TABLE `conseiller` (
 -- Index pour la table `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`NumeroClient`);
+  ADD PRIMARY KEY (`numeroClient`);
 
 --
 -- Index pour la table `compte`
@@ -110,19 +111,19 @@ ALTER TABLE `compte`
 -- Index pour la table `comptecourant`
 --
 ALTER TABLE `comptecourant`
-  ADD PRIMARY KEY (`NumeroCompte`);
+  ADD PRIMARY KEY (`numeroCompte`);
 
 --
 -- Index pour la table `compteepargne`
 --
 ALTER TABLE `compteepargne`
-  ADD PRIMARY KEY (`NumeroCompte`);
+  ADD PRIMARY KEY (`numeroCompte`);
 
 --
 -- Index pour la table `conseiller`
 --
 ALTER TABLE `conseiller`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
