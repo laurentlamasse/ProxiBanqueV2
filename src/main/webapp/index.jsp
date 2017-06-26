@@ -57,7 +57,7 @@
 		<div class="col-lg-4 notresize">
 			<div class="corps-entete">BIENVENUE</div>
 			<div class="corps-contenu">
-			<form>
+			<form method ="POST" action= "LoginServlet">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Login :</label>
 					<input id="login" class="form-control" type="text"  placeholder="Entrez votre login" name="login">

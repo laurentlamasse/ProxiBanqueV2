@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 26 Juin 2017 à 19:40
+-- Généré le :  Lun 26 Juin 2017 à 23:29
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -46,8 +46,9 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`nom`, `prenom`, `email`, `ville`, `adresse`, `codePostal`, `telephone`, `numeroClient`, `numeroConseiller`, `typeClient`) VALUES
-('Alexandre', 'Pic', 'apic@objis.net', 'Lyon', 'ValFon', 69290, '061870349', 958, 45, 'Particulier'),
-('Alexandre', 'Pic', 'apic@objis.net', 'Lyon', 'ValFon', 69290, '061870349', 87587, 8757, 'Particulier');
+('Alexandre', 'Pic', 'apic@objis.net', 'Lyon', 'ValFon', 69290, '061870349', 958, 47, 'Particulier'),
+('Alexandre', 'Pic', 'apic@objis.net', 'Lyon', 'ValFon', 69290, '061870349', 87587, 8757, 'Particulier'),
+('Alexandre', 'Valentin', 'apic@objis.net', 'Lyon', 'Maracas', 69290, '061870349', 999, 999, 'Particulier');
 
 -- --------------------------------------------------------
 
@@ -108,10 +109,7 @@ CREATE TABLE `conseiller` (
 INSERT INTO `conseiller` (`nom`, `prenom`, `id`, `login`, `mdp`) VALUES
 ('jean', 'dupont', 0, 'jedu', 'azerty'),
 ('Jean', 'Hubert', 47, 'plop', 'plip'),
-('Jean', 'Hubert', 98, 'plop', 'plip'),
-('Jean', 'Hubert', 118, 'plop', 'plip'),
-('Jean', 'Hubert', 113, 'plop', 'plip'),
-('Jean', 'Hubert', 114, 'plop', 'plip');
+('Jean', 'Hubert', 113, 'plop', 'plip');
 
 --
 -- Index pour les tables exportées

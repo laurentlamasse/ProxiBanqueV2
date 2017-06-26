@@ -38,7 +38,25 @@ public class TestGetConseiller {
 		consDAO = null;
 	}
 	@Test
-	public void testGetOneConseiller() {
+	public void testnotNullGetOneConseiller() {
+		
+		System.out.println("===test Ajout du conseiller voulu dans la BDD===");
+		conseillertest = new Conseiller("Jean", "Hubert", 113, "plop", "plip");
+		consDAO = new ConseillerDAO();
+		consDAO.addConseillerBase(conseillertest);
+		System.out.println(conseillertest);
+
+		Conseiller conseillerobtenu =  consDAO.getOneConseiller(conseillertest);
+		
+		assertNotNull(conseillerobtenu);
+		System.out.println("Le conseiller obtenu n'est pas un objet nul");
+
+		
+	}
+	
+	
+	@Test
+	public void testEqualsGetOneConseiller() {
 		
 		System.out.println("===test Ajout du conseiller voulu dans la BDD===");
 		conseillertest = new Conseiller("Jean", "Hubert", 113, "plop", "plip");
@@ -53,5 +71,7 @@ public class TestGetConseiller {
 
 		
 	}
+	
+
 
 }

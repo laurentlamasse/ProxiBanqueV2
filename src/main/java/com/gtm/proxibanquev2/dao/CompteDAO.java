@@ -20,8 +20,10 @@ import com.gtm.proxibanquev2.domaine.CompteEpargne;
 import com.gtm.proxibanquev2.domaine.Virement;
 
 public class CompteDAO {
-	
-	public boolean addCompteCourant(CompteCourant comptecourant) {//testé en dur, fonctionne
+
+	public boolean addCompteCourant(CompteCourant comptecourant) {// testé en
+																	// dur,
+																	// fonctionne
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -34,7 +36,8 @@ public class CompteDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "INSERT INTO `comptecourant` " + "(`numeroCompte`, `plafond`,`idclient`,`solde`)VALUES" + "(?,?,?,?)";
+			String sql = "INSERT INTO `comptecourant` " + "(`numeroCompte`, `plafond`,`idclient`,`solde`)VALUES"
+					+ "(?,?,?,?)";
 			pst = cn.prepareStatement(sql);
 
 			pst.setInt(1, comptecourant.getNumeroCompte());
@@ -42,7 +45,6 @@ public class CompteDAO {
 			pst.setInt(3, comptecourant.getNumeroClient());
 			pst.setFloat(4, comptecourant.getSolde());
 
-			
 			pst.executeUpdate();
 			return true;
 
@@ -61,7 +63,48 @@ public class CompteDAO {
 		return false;
 
 	}
-	public boolean addCompteEpargne(CompteEpargne compteepagne) {//testé en dur, fonctionne
+
+	public boolean removeCompteCourant(CompteCourant comptecourant) {// testé en
+																		// dur,
+																		// fonctionne
+
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			cn = DriverManager.getConnection(url, login, passwd);
+			String sql = "DELETE FROM `comptecourant` " + "WHERE `numeroCompte`=?";
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, comptecourant.getNumeroCompte());
+			pst.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+
+	}
+
+	public boolean addCompteEpargne(CompteEpargne compteepagne) {// testé en
+																	// dur,
+																	// fonctionne
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -75,7 +118,8 @@ public class CompteDAO {
 
 			cn = DriverManager.getConnection(url, login, passwd);
 			// public Client(String email, String adresse, int numeroClient){
-			String sql = "INSERT INTO `compteepargne` " + "(`numeroCompte`, `solde`,`numeroClient`,`remuneration`)VALUES" + "(?,?,?,?)";
+			String sql = "INSERT INTO `compteepargne` "
+					+ "(`numeroCompte`, `solde`,`numeroClient`,`remuneration`)VALUES" + "(?,?,?,?)";
 			pst = cn.prepareStatement(sql);
 
 			pst.setInt(1, compteepagne.getNumeroCompte());
@@ -83,7 +127,6 @@ public class CompteDAO {
 			pst.setInt(3, compteepagne.getNumeroClient());
 			pst.setFloat(4, compteepagne.getRemuneration());
 
-			
 			pst.executeUpdate();
 			return true;
 
@@ -102,9 +145,45 @@ public class CompteDAO {
 		return false;
 
 	}
-	
 
-	
+	public boolean removeCompteEpargne(CompteEpargne compteepagne) {// testé en
+																	// dur,
+																	// fonctionne
+
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			cn = DriverManager.getConnection(url, login, passwd);
+			String sql = "DELETE FROM `compteepargne` " + "WHERE `numeroCompte`=?";
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, compteepagne.getNumeroCompte());
+			pst.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+
+	}
+
 	public boolean modifierCompte(Compte compte) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
@@ -119,7 +198,6 @@ public class CompteDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			cn = DriverManager.getConnection(url, login, passwd);
-			// public Client(String email, String adresse, int numeroClient){
 			String sql = "UPDATE `Compte` " + "WHERE (`NumeroCompte`, `Solde`)VALUES" + "(?,?)";
 
 			pst = cn.prepareStatement(sql);
@@ -127,10 +205,7 @@ public class CompteDAO {
 			pst.setInt(1, compte.getNumeroCompte());
 			pst.setFloat(2, compte.getSolde());
 			pst.executeUpdate();
-			/*
-			int numcomptelu = rs.getInt(1);
-			Float soldelu = rs.getFloat(2);
-			*/
+
 			return true;
 
 		} catch (SQLException e) {
@@ -148,52 +223,23 @@ public class CompteDAO {
 		return false;
 	}
 
-
-
-	public void removeCompte(Client client, Compte compte) {
-
-	}
-
 	public void getListeCompteOneClient(Client client) {
-
+		// Une fonction pour afficher les deux tables?
 	}
 
 	public void getCompte(Integer numerocompte) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-
-		Compte compte = em.find(Compte.class, numerocompte);
-
-		tx.commit();
-
-		em.close();
-		emf.close();
+		// Une fonction pour chercher les deux tables?
 
 	}
 
 	public Collection<Compte> getListeCompte() {
+		return null;
 
-		Collection<Compte> resultat;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		Query query = em.createQuery("from Compte");
-		resultat = query.getResultList();
-		tx.commit();
-
-		em.close();
-		emf.close();
-
-		return resultat;
+		// Une fonction pour afficher les deux tables?
 
 	}
-	
 
 	public void effectuerVirement(Virement virement) {// virement
 	}
 
-	
 }

@@ -63,6 +63,8 @@ public class ClientDAO {
 		return false;
 	}
 
+	
+	
 	public boolean removeClientBase(Client client) { // Teste ok
 
 		String url = "jdbc:mysql://localhost/proxybanque";
@@ -96,8 +98,10 @@ public class ClientDAO {
 		}
 		return true;
 	}
+	
+	
 
-	public boolean updateClientBase(Client client) {
+	public boolean updateClientBase(Client client) {//Teste en dur ok
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -111,16 +115,25 @@ public class ClientDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "UPDATE client SET Email = ?, Adresse = ?, NumeroCLient = ?" + " NumeroCLient = ?";
+			
+			String sql = "UPDATE `client` SET nom=?,prenom =?, email=?, ville=?, adresse=?,codePostal=?,telephone=?,numeroClient=?, numeroConseiller=? WHERE numeroClient=" + client.getNumeroClient();
+
 			pst = cn.prepareStatement(sql);
 
-			pst.setString(1, client.getEmail());
-			pst.setString(2, client.getAdresse());
-			pst.setInt(3, client.getNumeroClient());
-			pst.setInt(4, client.getNumeroClient());
+			pst.setString(1, client.getNom());
+			pst.setString(2, client.getPrenom());
+			pst.setString(3, client.getEmail());
+			pst.setString(4, client.getVille());
+			pst.setString(5, client.getAdresse());
+			pst.setString(6, client.getCodepostal());
+			pst.setString(7, client.getTelephone());
+			pst.setInt(8, client.getNumeroClient());
+			pst.setInt(9, client.getNumeroconseiller());
 
 			pst.executeUpdate();
-
+			
+			
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -139,7 +152,7 @@ public class ClientDAO {
 
 	}
 
-	public List<Client> getListeCLient() {
+	public List<Client> getListeCLient() { //Fonctionne
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
@@ -180,8 +193,6 @@ public class ClientDAO {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(listeclient);
-		System.out.println("AVANT RETURN");
 
 		return listeclient;
 	}

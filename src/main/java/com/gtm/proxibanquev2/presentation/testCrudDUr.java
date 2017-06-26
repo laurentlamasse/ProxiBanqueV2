@@ -33,7 +33,9 @@ public class testCrudDUr {
 
 		
 		//compteDAO.addCompteCourant(compteCouranttest);
-		compteDAO.addCompteEpargne(compteEpargnetest);
+		//compteDAO.addCompteEpargne(compteEpargnetest);
+		compteDAO.removeCompteCourant(compteCouranttest);
+		compteDAO.removeCompteEpargne(compteEpargnetest);
 
 		//System.out.println(conseillerdur);
 
@@ -41,8 +43,10 @@ public class testCrudDUr {
 		
 		
 		//test ajout client
-		Client clientdur = new Client("Alexandre", "Pic", "ValFon", "69290", "apic@objis.net", "Lyon", "061870349", 45,
-				958);
+		Client clientdur5 = new Client("Alexandre", "Valentin", "Maracas", "69290", "apic@objis.net", "Lyon", "061870349", 999,
+				999);
+		//clientDAO.addClientBase(clientdur5);
+		//clientDAO.updateClientBase(clientdur5);
 		
 		//System.out.println(clientDAO.getListeCLientConseiller(conseillerexistant));
 		
@@ -60,7 +64,7 @@ public class testCrudDUr {
 		//System.out.println(logservice.checkLogin(conseiller));
 		
 		//System.out.println(conserv.getListeClient());
-		//System.out.println(clientDAO.getListeCLient());
+		System.out.println(clientDAO.getListeCLient());
 		
 		//System.out.println(clientDAO.getCLient(958));
 		

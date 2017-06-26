@@ -21,7 +21,7 @@ import com.gtm.proxibanquev2.domaine.Conseiller;
 
 public class ConseillerDAO {
 
-	public boolean addConseillerBase(Conseiller conseiller) {
+	public boolean addConseillerBase(Conseiller conseiller) {//Testé
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
