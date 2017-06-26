@@ -60,11 +60,11 @@
 			<form>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Login :</label>
-					<input id="login" class="form-control" type="text"  placeholder="Entrez votre login">
+					<input id="login" class="form-control" type="text"  placeholder="Entrez votre login" name="login">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Password :</label>
-					<input id="password" class="form-control" type="password" placeholder="Entez votre mot de passe">
+					<input id="password" class="form-control" type="password" placeholder="Entez votre mot de passe" name = "mdp">
 				</div>
 				<div class="form-check">
 					<label class="form-check-label">

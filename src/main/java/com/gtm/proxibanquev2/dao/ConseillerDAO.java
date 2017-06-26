@@ -1,5 +1,12 @@
 package com.gtm.proxibanquev2.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
@@ -11,97 +18,230 @@ import javax.persistence.Query;
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Conseiller;
 
+import domaine.Livre;
+
 public class ConseillerDAO {
 
 	public Conseiller addConseillerBase(Conseiller conseiller) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		em.persist(conseiller);
-		Conseiller conseiller2 = em.find(Conseiller.class, conseiller.getId());
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 
-		tx.commit();
+		try {
 
-		System.out.println("Voici le client inséré" + conseiller);
+			Class.forName("com.mysql.jdbc.Driver");
 
-		em.close();
-		emf.close();
-		return conseiller2;
+			cn = DriverManager.getConnection(url, login, passwd);
+			// public Client(String email, String adresse, int numeroClient){
+			String sql = "INSERT INTO `Conseiller` " + "(`ID`, `Login`, `Mdp`)VALUES" + "(?,?,?)";
 
+			pst = cn.prepareStatement(sql);
+
+			pst.setInt(1, conseiller.getId());
+			pst.setString(2, conseiller.getLogin());
+			pst.setString(3, conseiller.getMdp());
+			pst.executeUpdate();
+			return conseiller;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return conseiller;
 	}
 
+	
+
 	public boolean removeConseilleBase(Conseiller conseiller) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 
-		em.remove(conseiller); // Pas sur de la méthode
+		try {
 
-		tx.commit();
+			Class.forName("com.mysql.jdbc.Driver");
 
-		System.out.println("Voici le conseiller supprimé" + conseiller);
+			cn = DriverManager.getConnection(url, login, passwd);
+			// public Client(String email, String adresse, int numeroClient){
+			String sql = "DELETE FROM `Client` " + "WHERE `ID`=?";
 
-		em.close();
-		emf.close();
+			pst = cn.prepareStatement(sql);
 
-		return true;
+			pst.setInt(1, conseiller.getId());
+			
+			pst.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
 	public Collection<Conseiller> getListeConseiller() {
 
-		Collection<Conseiller> resultat;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		Query query = em.createQuery("from Conseiller");
-		resultat = query.getResultList();
-		tx.commit();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		ArrayList<Conseiller> listeconseiller = new ArrayList();
 
-		// System.out.println("Voici l'humain inséré :" + humain);
+		try {
 
-		em.close();
-		emf.close();
+			Class.forName("com.mysql.jdbc.Driver");
 
-		return resultat;
+			cn = DriverManager.getConnection(url, login, passwd);
+			st = cn.createStatement();
+
+			String sql = "SELECT * FROM `Conseiller` WHERE 1 ";
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				Conseiller tempocons = new Conseiller(rs.getInt("ID"), rs.getString("Login"),
+						rs.getString("Mdp"));
+				listeconseiller.add(tempocons);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listeconseiller;
 
 	}
 
 	public Conseiller getOneConseiller(Conseiller conseiller) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		Conseiller conseillertrouve = null;
+		try {
 
-		Conseiller conseiller2 = em.find(Conseiller.class, conseiller.getId());
+			Class.forName("com.mysql.jdbc.Driver");
+			cn = DriverManager.getConnection(url, login, passwd);
+			String sql = "SELECT * FROM `Conseiller` WHERE `ID`=?";
 
-		tx.commit();
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, conseiller.getId());
+			rs = pst.executeQuery();
 
-		em.close();
-		emf.close();
+			System.out.println("Le conseiller est cherché et l'ID est  " + conseiller.getId());
 
-		return conseiller2;
+			rs.next();
+
+			int id = rs.getInt(1);
+
+			String log = rs.getString(2);
+
+			String  mdp = rs.getString(3);
+
+			 conseillertrouve = new Conseiller(id, log, mdp);
+
+			return conseillertrouve;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return conseillertrouve;
 
 	}
 	
-	public Conseiller getConseillerFromLogin (String login){
+	public Conseiller getConseillerFromLogin (String loginEmploye){
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/libraire";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		Conseiller conseiller =null;
+		String mdp =null;
+		String log = null;
+		int id = 0;
+		try {
 
-		Conseiller conseiller = em.find(Conseiller.class, login);
+			Class.forName("com.mysql.jdbc.Driver");
+			cn = DriverManager.getConnection(url, login, passwd);
+			String sql = "SELECT * FROM `Conseiller` WHERE `Login`=?";
 
-		tx.commit();
+			pst = cn.prepareStatement(sql);
+			pst.setString(1, loginEmploye);
 
-		em.close();
-		emf.close();
+			rs = pst.executeQuery();
 
+			rs.next();
+
+			id = rs.getInt(1);
+			log = rs.getString(2);
+			 mdp = rs.getString(3);
+			System.out.println("Lemdp du conseiller est " + mdp);
+
+			conseiller = new Conseiller(id,log,mdp);				
+
+			return conseiller;
+
+			// }
+		} catch (SQLException e) {
+			System.out.println("==========ERREUR 007=============");
+			//e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// Etape 6 : libérer ressources de la mémoire.
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return conseiller;
 		
 		

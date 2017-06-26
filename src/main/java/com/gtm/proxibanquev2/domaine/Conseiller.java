@@ -1,7 +1,12 @@
 package com.gtm.proxibanquev2.domaine;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 public class Conseiller extends Employe{
 
+	private int id;
+	
 	public Conseiller(int id, String login, String mdp) {
 		super(id, login, mdp);
 	}

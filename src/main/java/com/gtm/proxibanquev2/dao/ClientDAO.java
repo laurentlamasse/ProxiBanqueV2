@@ -1,5 +1,13 @@
 package com.gtm.proxibanquev2.dao;
 
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
@@ -15,40 +23,76 @@ public class ClientDAO {
 
 	public Client addClientBase(Client client) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 
-		em.persist(client);
-		Client client2 = em.find(Client.class, client.getNumeroClient());
+		try {
 
-		tx.commit();
+			Class.forName("com.mysql.jdbc.Driver");
 
-		System.out.println("Voici le client inséré" + client);
+			cn = DriverManager.getConnection(url, login, passwd);
+			// public Client(String email, String adresse, int numeroClient){
+			String sql = "INSERT INTO `Client` " + "(`Email`, `Adresse`, `NumeroClient`)VALUES" + "(?,?,?)";
 
-		em.close();
-		emf.close();
-		return client2;
+			pst = cn.prepareStatement(sql);
 
+			pst.setString(1, client.getEmail());
+			pst.setString(2, client.getAdresse());
+			pst.setInt(3, client.getNumeroClient());
+			pst.executeUpdate();
+			return client;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return client;
 	}
 
 	public boolean removeClientBase(Client client) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 
-		em.remove(client); // Pas sur de la méthode
+		try {
 
-		tx.commit();
+			Class.forName("com.mysql.jdbc.Driver");
 
-		System.out.println("Voici le client supprimé" + client);
+			cn = DriverManager.getConnection(url, login, passwd);
+			// public Client(String email, String adresse, int numeroClient){
+			String sql = "DELETE FROM `Client` " + "WHERE `NumeroClient`=?";
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, client.getNumeroClient());
+			pst.executeUpdate();
 
-		em.close();
-		emf.close();
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return true;
 	}
 
@@ -72,48 +116,98 @@ public class ClientDAO {
 	}
 
 	public Collection<Client> getListeCLient() {
-		Collection<Client> resultat;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		Query query = em.createQuery("from Client");
-		resultat = query.getResultList();
-		tx.commit();
 
-		em.close();
-		emf.close();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		ArrayList<Client> listeclient = new ArrayList();
 
-		return resultat;
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			cn = DriverManager.getConnection(url, login, passwd);
+			st = cn.createStatement();
+
+			String sql = "SELECT * FROM `Client` WHERE 1 ";
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				Client tempoclient = new Client(rs.getString("Email"), rs.getString("Adresse"),
+						rs.getInt("NumeroClient"));
+				listeclient.add(tempoclient);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listeclient;
 	}
 
-public Client getCLient(Integer idclient ){
-	
-	
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-	EntityManager em = emf.createEntityManager();
-	EntityTransaction tx = em.getTransaction();
-	tx.begin();
-	
-	Client client = em.find(Client.class, idclient);
-       
-      
-    	tx.commit();
+	public Client getCLient(Integer idclient) {
 
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		Client client = null;
+		try {
 
-    	em.close();
-    	emf.close();
-   
-        
-        
-    return client;
-	
-	
-}
+			Class.forName("com.mysql.jdbc.Driver");
+			cn = DriverManager.getConnection(url, login, passwd);
+			String sql = "SELECT * FROM `Client` WHERE `NumeroClient`=?";
 
-public void getListeCLientConseiller(Conseiller conseiller){
-	
-}
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, idclient);
+			rs = pst.executeQuery();
 
+			System.out.println("Le client est cherché et l'ID est  " + idclient);
+
+			rs.next();
+
+			String email = rs.getString(1);
+
+			String adresse = rs.getString(2);
+
+			Integer numeroClient = rs.getInt(3);
+
+			String type = rs.getString(4);
+
+			client = new Client(email, adresse, numeroClient);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return client;
+
+	}
+
+	public void getListeCLientConseiller(Conseiller conseiller) {
+
+	}
 
 }

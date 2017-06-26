@@ -1,11 +1,13 @@
 package com.gtm.proxibanquev2.domaine;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 public class Client {
-
 	public enum typeClient{particulier, entreprise};
 	
 	//Propriete
 	private String email, adresse;
+	
 	private int numeroClient;
 	private typeClient type;
 	
