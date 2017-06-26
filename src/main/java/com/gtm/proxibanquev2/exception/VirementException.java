@@ -1,4 +1,4 @@
-package exception;
+package com.gtm.proxibanquev2.exception;
 
 public class VirementException extends Exception{
 

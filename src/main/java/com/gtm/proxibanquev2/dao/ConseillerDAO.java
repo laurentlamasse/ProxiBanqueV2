@@ -19,8 +19,6 @@ import javax.persistence.Query;
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Conseiller;
 
-import domaine.Livre;
-
 public class ConseillerDAO {
 
 	public Conseiller addConseillerBase(Conseiller conseiller) {

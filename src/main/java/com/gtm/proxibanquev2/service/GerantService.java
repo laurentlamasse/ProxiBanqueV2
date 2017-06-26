@@ -14,9 +14,10 @@ public class GerantService {
 	}
 
 	public List <Conseiller> getListeConseiller(){
+		//TODO a faire
 		List<Conseiller> listeConseiller = null;
 		ConseillerDAO conseillerDao = new ConseillerDAO();
-		listeConseiller= conseillerDao.getListeConseiller();
+		//listeConseiller= conseillerDao.getListeConseiller();
 		return listeConseiller;		
 	}
 }

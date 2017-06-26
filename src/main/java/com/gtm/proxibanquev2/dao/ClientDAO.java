@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,7 +41,7 @@ public class ClientDAO {
 
 			pst = cn.prepareStatement(sql);
 
-			pst.setString(1, client.getEmail());
+			//pst.setString(1, client.getEmail());
 			pst.setString(2, client.getAdresse());
 			pst.setInt(3, client.getNumeroClient());
 			pst.executeUpdate();
@@ -116,7 +117,7 @@ public class ClientDAO {
 	}
 
 	public Collection<Client> getListeCLient() {
-
+		// TODO Auto-generated method stub
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
@@ -137,8 +138,7 @@ public class ClientDAO {
 
 			while (rs.next()) {
 
-				Client tempoclient = new Client(rs.getString("Email"), rs.getString("Adresse"),
-						rs.getInt("NumeroClient"));
+				Client tempoclient = new Client("nom", "prenom", rs.getString("Adresse"),  "codepostal", "ville" , "telephone", rs.getInt("NumeroClient"));
 				listeclient.add(tempoclient);
 
 			}
@@ -159,6 +159,7 @@ public class ClientDAO {
 
 	public Client getCLient(Integer idclient) {
 
+		// TODO Auto-generated method stub
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
@@ -187,8 +188,7 @@ public class ClientDAO {
 			Integer numeroClient = rs.getInt(3);
 
 			String type = rs.getString(4);
-
-			client = new Client(email, adresse, numeroClient);
+			client = new Client("nom", "prenom", adresse,  "codepostal", "ville" , "telephone", numeroClient);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -207,7 +207,12 @@ public class ClientDAO {
 	}
 
 	public void getListeCLientConseiller(Conseiller conseiller) {
+		// TODO Auto-generated method stub
+	}
 
+	public List<Client> getListeClient() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
