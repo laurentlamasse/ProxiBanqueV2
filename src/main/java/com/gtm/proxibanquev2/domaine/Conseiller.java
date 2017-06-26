@@ -5,9 +5,7 @@ import javax.persistence.Id;
 
 public class Conseiller extends Employe{
 
-	private int id;
-	private int idconseiller;
-	public Conseiller(String nom, String prenom, int id, String login, String mdp) {
+	public Conseiller(String nom, String prenom, Integer id, String login, String mdp) {
 		super(nom, prenom, id, login, mdp);
 	}
 
@@ -17,33 +15,24 @@ public class Conseiller extends Employe{
 	
 	
 	
-	public int getId() {
+	/*public int getId() {
 		return id;
 	}
 
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
+*/
 
 
-
-	public int getIdconseiller() {
-		return idconseiller;
-	}
-
-
-
-	public void setIdconseiller(int idconseiller) {
-		this.idconseiller = idconseiller;
-	}
-
+	
 
 
 	@Override
 	public String toString() {
-		return "Conseiller [id=" + id + ", getLogin()=" + getLogin() + ", getNom()=" + getNom() + ", getPrenom()="
+		return "Conseiller [id=" + getId() + ", getLogin()=" + getLogin() + ", getNom()=" + getNom() + ", getPrenom()="
 				+ getPrenom() + "]";
 	}
 

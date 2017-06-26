@@ -15,32 +15,34 @@ public class testCrudDUr {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-	
+		ConseillerService conserv = new ConseillerService();
+		GerantService gersev = new GerantService();
+		Conseiller conseillerdur = new Conseiller("jean", "dupont", 56, "jedu", "azerty");
+		Conseiller conseillerdur3 = new Conseiller("jean", "dupont", 63, "jedu", "azerty");
 
-	//Conseiller conseillertest = new Conseiller(58, "jean","dupont");
-	//Conseiller conseillertest2 = new Conseiller(55, "sisi","lala");
+		System.out.println(conseillerdur);
 
-	Conseiller conseillerlogin = new Conseiller("jean","dupont");
+		System.out.println(conseillerdur3);
+		
 
-	//Client clienttest = new Client("ici@mail.Com","rue du chat",3005); //	public Client(String email, String adresse, int numeroClient){
-	//Client clienttest2 = new Client("gigi@mail.Com","rue du tronc",875);
-	ConseillerService conserv = new ConseillerService();
-	GerantService gersev = new GerantService();
-	
-	//Compte comptest1 = new CompteCourant(5655,658556,500);
-	//Compte comptest2 = new CompteCourant(5655,658556,800);
+		Client clientdur = new Client("Alexandre", "Pic", "ValFon", "69290", "apic@objis.net", "Lyon", "061870349", 45,
+				958);
 
-	
-	//conserv.supprimerClient(clienttest2);
-	
-	//gersev.creerConseiller(conseillertest2);
-	//System.out.println("Voici un test de connection");
-	//conserv.ajouterClient(clienttest2);
-	//conserv.supprimerClient(clienttest);
-	LoginService logservice = new LoginService();
-	
-	
-	//System.out.println(logservice.checkLogin(conseillertest));
-	
+		System.out.println(clientdur);
+		conserv.ajouterClient(clientdur);
+		//gerserv.getListeConseiller();
+
+		// Compte comptest1 = new CompteCourant(5655,658556,500);
+		// Compte comptest2 = new CompteCourant(5655,658556,800);
+
+		// conserv.supprimerClient(clienttest2);
+		// gersev.creerConseiller(conseillerdur);
+		// System.out.println("Voici un test de connection");
+		// conserv.ajouterClient(clienttest2);
+		// conserv.supprimerClient(clienttest);
+		// LoginService logservice = new LoginService();
+
+		// System.out.println(logservice.checkLogin(conseillertest));
+
 	}
 }

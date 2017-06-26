@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 26 Juin 2017 à 15:23
+-- Généré le :  Lun 26 Juin 2017 à 19:40
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -32,12 +32,22 @@ CREATE TABLE `client` (
   `nom` varchar(20) NOT NULL,
   `prenom` varchar(20) NOT NULL,
   `email` varchar(20) NOT NULL,
+  `ville` varchar(15) NOT NULL,
   `adresse` varchar(20) NOT NULL,
   `codePostal` int(10) NOT NULL,
+  `telephone` varchar(15) NOT NULL,
   `numeroClient` int(10) NOT NULL,
   `numeroConseiller` int(10) NOT NULL,
   `typeClient` varchar(20) NOT NULL DEFAULT 'Particulier'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`nom`, `prenom`, `email`, `ville`, `adresse`, `codePostal`, `telephone`, `numeroClient`, `numeroConseiller`, `typeClient`) VALUES
+('Alexandre', 'Pic', 'apic@objis.net', 'Lyon', 'ValFon', 69290, '061870349', 958, 45, 'Particulier'),
+('Alexandre', 'Pic', 'apic@objis.net', 'Lyon', 'ValFon', 69290, '061870349', 87587, 8757, 'Particulier');
 
 -- --------------------------------------------------------
 
@@ -90,6 +100,18 @@ CREATE TABLE `conseiller` (
   `login` varchar(20) NOT NULL,
   `mdp` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `conseiller`
+--
+
+INSERT INTO `conseiller` (`nom`, `prenom`, `id`, `login`, `mdp`) VALUES
+('jean', 'dupont', 0, 'jedu', 'azerty'),
+('Jean', 'Hubert', 47, 'plop', 'plip'),
+('Jean', 'Hubert', 98, 'plop', 'plip'),
+('Jean', 'Hubert', 118, 'plop', 'plip'),
+('Jean', 'Hubert', 113, 'plop', 'plip'),
+('Jean', 'Hubert', 114, 'plop', 'plip');
 
 --
 -- Index pour les tables exportées

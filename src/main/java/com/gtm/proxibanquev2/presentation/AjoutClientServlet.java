@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.gtm.proxibanquev2.domaine.Client;
+import com.gtm.proxibanquev2.service.ConseillerService;
 
 /**
  * Servlet implementation class AjoutClientServlet
@@ -27,7 +28,7 @@ public class AjoutClientServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ajout(request, response);
+		ajoutClient(request, response);
 	}
 
 	/**
@@ -35,18 +36,26 @@ public class AjoutClientServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ajout(request, response);
+		ajoutClient(request, response);
 	}
 
-	protected void ajout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void ajoutClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ConseillerService conseillerService = new ConseillerService();
+		
 		String nom =request.getParameter("createNomClient");
 		String prenom= request.getParameter("createPrenomClient");
 		String adresse =request.getParameter("createAdresseClient");
 		String codepostal= request.getParameter("createCodeClient");
+		String email= request.getParameter("createEmailClient");
 		String ville=request.getParameter("createVilleClient");
 		String telephone= request.getParameter("createTelClient");
-		int numeroClient=1;
-		Client client=new Client(nom, prenom, adresse, codepostal, ville, telephone, numeroClient);
+		int numeroconseiller = Integer.parseInt(request.getParameter("numeroconseiller"));
+		int numeroClient = Integer.parseInt(request.getParameter("numeroconseiller"));
+		
+		Client clientToAdd = new Client(nom,prenom,adresse,codepostal,email,ville,telephone,numeroconseiller,numeroClient);
+		conseillerService.ajouterClient(clientToAdd);
+		//CONSTRUCTEUR PAS COMPLET, Manque ID 
+		//public Client(String nom, String prenom, String adresse, String codepostal, String email, String ville, String telephone,int numeroconseiller, int numeroClient){
 	}
 	
 }

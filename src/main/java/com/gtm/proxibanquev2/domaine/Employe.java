@@ -4,10 +4,10 @@ public abstract class Employe extends Humain {
 
 	// Proprietes
 	private String login, mdp;
-	private int id;
+	private Integer id;
 
 	// Constructeur
-	public Employe(String nom, String prenom, int id, String login, String mdp) {
+	public Employe(String nom, String prenom, Integer id, String login, String mdp) {
 		super(nom, prenom);
 		this.login = login;
 		this.mdp = mdp;
@@ -42,7 +42,7 @@ public abstract class Employe extends Humain {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

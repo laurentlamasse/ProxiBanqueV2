@@ -21,7 +21,7 @@ import com.gtm.proxibanquev2.domaine.Conseiller;
 
 public class ConseillerDAO {
 
-	public Conseiller addConseillerBase(Conseiller conseiller) {
+	public boolean addConseillerBase(Conseiller conseiller) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -32,18 +32,19 @@ public class ConseillerDAO {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-
 			cn = DriverManager.getConnection(url, login, passwd);
-			// public Client(String email, String adresse, int numeroClient){
-			String sql = "INSERT INTO `Conseiller` " + "(`ID`, `Login`, `Mdp`)VALUES" + "(?,?,?)";
-
+			
+			String sql = "INSERT INTO `conseiller` " + "(`nom`, `prenom`, `id`,`login`,`mdp`)VALUES" + "(?,?,?,?,?)";
 			pst = cn.prepareStatement(sql);
 
-			pst.setInt(1, conseiller.getId());
-			pst.setString(2, conseiller.getLogin());
-			pst.setString(3, conseiller.getMdp());
-			pst.executeUpdate();
-			return conseiller;
+			pst.setString(1, conseiller.getNom());
+			pst.setString(2, conseiller.getPrenom());
+			pst.setInt(3, conseiller.getId());
+			pst.setString(4, conseiller.getLogin());
+			pst.setString(5, conseiller.getMdp());
+
+			pst.executeUpdate(); 
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,7 +58,7 @@ public class ConseillerDAO {
 				e.printStackTrace();
 			}
 		}
-		return conseiller;
+		return false;
 	}
 
 	
@@ -73,13 +74,10 @@ public class ConseillerDAO {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-
 			cn = DriverManager.getConnection(url, login, passwd);
-			// public Client(String email, String adresse, int numeroClient){
-			String sql = "DELETE FROM `Client` " + "WHERE `ID`=?";
-
+			
+			String sql = "DELETE FROM `conseiller` " + "WHERE `id`=?";
 			pst = cn.prepareStatement(sql);
-
 			pst.setInt(1, conseiller.getId());
 			
 			pst.executeUpdate();
@@ -113,20 +111,17 @@ public class ConseillerDAO {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-
 			cn = DriverManager.getConnection(url, login, passwd);
 			st = cn.createStatement();
 
-			String sql = "SELECT * FROM `Conseiller` WHERE 1 ";
+			String sql = "SELECT * FROM `conseiller` WHERE 1 ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-
-			//	Conseiller tempocons = new Conseiller(rs.getInt("ID"), rs.getString("Login"),
-			//			rs.getString("Mdp"));
-			//	listeconseiller.add(tempocons);
-
+			Conseiller tempocons = new Conseiller(rs.getString("nom"),rs.getString("prenom"),rs.getInt("id"),rs.getString("login"),rs.getString("mdp"));
+			listeconseiller.add(tempocons);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -156,24 +151,22 @@ public class ConseillerDAO {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "SELECT * FROM `Conseiller` WHERE `ID`=?";
-
+			
+			String sql = "SELECT * FROM `conseiller` WHERE `id`=?";
 			pst = cn.prepareStatement(sql);
 			pst.setInt(1, conseiller.getId());
 			rs = pst.executeQuery();
-
-			System.out.println("Le conseiller est cherché et l'ID est  " + conseiller.getId());
-
 			rs.next();
+			
+			
+			String nom =rs.getString(1);
+			String prenom = rs.getString(2);
+			int id = rs.getInt(3);
+			String loginconseiller = rs.getString(4);
+			String mdp = rs.getString(5);
 
-			int id = rs.getInt(1);
-
-			String log = rs.getString(2);
-
-			String  mdp = rs.getString(3);
-
-			// conseillertrouve = new Conseiller(id, log, mdp);
-
+			conseillertrouve = new Conseiller(nom, prenom, id, loginconseiller, mdp);
+			System.out.println("=====CONSEILLER TROUVER" + conseillertrouve);
 			return conseillertrouve;
 		} catch (SQLException e) {
 			e.printStackTrace();

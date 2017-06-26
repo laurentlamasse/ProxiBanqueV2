@@ -30,16 +30,24 @@ public class ClientDAO {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-
+System.out.println(client);
 			cn = DriverManager.getConnection(url, login, passwd);
-			// public Client(String email, String adresse, int numeroClient){
-			String sql = "INSERT INTO `Client` " + "(`Email`, `Adresse`, `NumeroClient`)VALUES" + "(?,?,?)";
+			String sql = "INSERT INTO `Client` " + "(`nom`, `prenom`, `email`,`ville`,`adresse`,`codePostal`,`telephone`,`numeroClient`,`numeroConseiller`)VALUES"
+			+"(?,?,?,?,?,?,?,?,?)";
 
 			pst = cn.prepareStatement(sql);
 
-			//pst.setString(1, client.getEmail());
-			pst.setString(2, client.getAdresse());
-			pst.setInt(3, client.getNumeroClient());
+			pst.setString(1, client.getNom());
+			pst.setString(2, client.getPrenom());
+			pst.setString(3, client.getEmail());
+			pst.setString(4, client.getVille());
+			pst.setString(5, client.getAdresse());
+			pst.setString(6, client.getCodepostal());
+			pst.setString(7, client.getTelephone());
+			pst.setInt(8, client.getNumeroClient());
+			pst.setInt(9, client.getNumeroconseiller());
+
+	
 			pst.executeUpdate();
 
 			return true;
@@ -156,9 +164,9 @@ public class ClientDAO {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-
-				Client tempoclient = new Client("nom", "prenom", rs.getString("Adresse"),  "codepostal", "ville" , "telephone", rs.getInt("NumeroClient"));
-				listeclient.add(tempoclient);
+				//PAS FINI? REFAIRE CLIENT AVEC TOUS LES PARAMETRES
+				//Client tempoclient = new Client("nom", "prenom", rs.getString("Adresse"),  "codepostal", "ville" , "telephone", rs.getInt("NumeroClient"));
+				//listeclient.add(tempoclient);
 
 			}
 		} catch (SQLException e) {
@@ -207,7 +215,9 @@ public class ClientDAO {
 			Integer numeroClient = rs.getInt(3);
 
 			String type = rs.getString(4);
-			client = new Client("nom", "prenom", adresse,  "codepostal", "ville" , "telephone", numeroClient);
+			//PAS FINI REFAIRE CLIENT AVEC TOUS LES PARAMETRES
+
+			//client = new Client("nom", "prenom", adresse,  "codepostal", "ville" , "telephone", numeroClient);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

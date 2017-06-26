@@ -6,7 +6,7 @@ public class Client extends Humain{
 	public enum typeClient{particulier, entreprise};
 	
 	//Propriete
-	private String nom, prenom, adresse, codepostal, ville, telephone,email;
+	private String adresse, codepostal, ville, telephone,email;
 	private int numeroClient;
 	private int numeroconseiller;
 
@@ -14,9 +14,10 @@ public class Client extends Humain{
 	
 	//Constructeur
 
-	public Client(String nom, String prenom, String adresse, String codepostal, String ville, String telephone, int numeroClient){
+	public Client(String nom, String prenom, String adresse, String codepostal, String email, String ville, String telephone,int numeroconseiller, int numeroClient){
 		super(nom,prenom);
 		this.codepostal=codepostal;
+		this.email=email;
 		this.adresse=adresse;
 		this.ville=ville;
 		this.telephone=telephone;
@@ -43,21 +44,7 @@ public class Client extends Humain{
 	public String getEmail() {
 		return email;}
 
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
+	
 
 	public String getAdresse() {
 		return adresse;
@@ -110,7 +97,7 @@ public class Client extends Humain{
 
 	@Override
 	public String toString() {
-		return "Client [nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", codepostal=" + codepostal
+		return "Client [nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + adresse + ", codepostal=" + codepostal
 				+ ", ville=" + ville + ", telephone=" + telephone + ", email=" + email + ", numeroClient="
 				+ numeroClient + ", numeroconseiller=" + numeroconseiller + ", type=" + type + "]";
 	}
