@@ -4,8 +4,11 @@ import java.util.List;
 
 import com.gtm.proxibanquev2.dao.ClientDAO;
 import com.gtm.proxibanquev2.dao.CompteDAO;
+import com.gtm.proxibanquev2.dao.ConseillerDAO;
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Compte;
+import com.gtm.proxibanquev2.domaine.CompteCourant;
+import com.gtm.proxibanquev2.domaine.Conseiller;
 import com.gtm.proxibanquev2.domaine.Virement;
 import com.gtm.proxibanquev2.exception.VirementException;
 
@@ -43,9 +46,20 @@ public class ConseillerService {
 	public List<Client> getListeClient(){
 		List<Client> listeClients;
 		ClientDAO clientDao= new ClientDAO();
-		listeClients= clientDao.getListeClient();
+		listeClients= clientDao.getListeCLient();
+		System.out.println("DANS SERVICE liste Client" + listeClients);
 		return listeClients;
 	}
+	
+	/*
+	 * public List <Conseiller> getListeConseiller(){
+		List<Conseiller> listeConseiller = null;
+		ConseillerDAO conseillerDao = new ConseillerDAO();
+		listeConseiller= conseillerDao.getListeConseiller();
+		return listeConseiller;		
+	}
+	 * 
+	 */
 	
 	public List<Compte> getListeCompte(Client client){
 		List<Compte> listeComptes;
@@ -54,10 +68,13 @@ public class ConseillerService {
 		return listeComptes;
 	}
 	
-	public void ajoutCompte(Compte compte, Client client){
+	
+	
+	
+	public void ajoutCompteCourant(CompteCourant compte){
 		
 		CompteDAO compteDao = new CompteDAO();
-		compteDao.addCompteBase( compte);
+		compteDao.addCompteCourant( compte);
 	}
 	
 	public Client obtenirClient(int id){

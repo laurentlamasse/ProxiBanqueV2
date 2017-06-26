@@ -63,7 +63,7 @@ public class ConseillerDAO {
 
 	
 
-	public boolean removeConseilleBase(Conseiller conseiller) {
+	public boolean removeConseilleBase(Conseiller conseiller) { //testé Junit
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
@@ -98,7 +98,7 @@ public class ConseillerDAO {
 		return false;
 	}
 
-	public List<Conseiller> getListeConseiller() {
+	public List<Conseiller> getListeConseiller() { //testé en dur
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -106,7 +106,7 @@ public class ConseillerDAO {
 		Connection cn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		ArrayList<Conseiller> listeconseiller = new ArrayList();
+		ArrayList<Conseiller> listeconseiller = new ArrayList<Conseiller>();
 
 		try {
 
@@ -138,7 +138,7 @@ public class ConseillerDAO {
 
 	}
 
-	public Conseiller getOneConseiller(Conseiller conseiller) {
+	public Conseiller getOneConseiller(Conseiller conseiller) { //Testé en dur
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -166,7 +166,7 @@ public class ConseillerDAO {
 			String mdp = rs.getString(5);
 
 			conseillertrouve = new Conseiller(nom, prenom, id, loginconseiller, mdp);
-			System.out.println("=====CONSEILLER TROUVER" + conseillertrouve);
+			//System.out.println("=====CONSEILLER TROUVER" + conseillertrouve);
 			return conseillertrouve;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -184,9 +184,9 @@ public class ConseillerDAO {
 
 	}
 	
-	public Conseiller getConseillerFromLogin (String loginEmploye){
+	public Conseiller getConseillerFromLogin (String loginEmploye){ //Fonctionne en dur, pas le test
 		
-		String url = "jdbc:mysql://localhost/libraire";
+		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
@@ -195,46 +195,34 @@ public class ConseillerDAO {
 		Conseiller conseiller =null;
 		String mdp =null;
 		String log = null;
+		String nom = null;
+		String prenom = null;
 		int id = 0;
 		
-		
-		/* 
-		 * Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "SELECT * FROM humains WHERE prenom=?";
-
-			pst = cn.prepareStatement(sql);
-			 pst.setString(1, prenomscan);
-			rs = pst.executeQuery();
-
-			System.out.println("Nous cherchons bien le prénom qui est " + prenomscan);
-
-			rs.next();
-
-			nom = rs.getString(1);
-			System.out.println("Le nom de la personne est : == " + nom);*/
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "SELECT * FROM `Conseiller` WHERE `Login`=?";
+			String sql = "SELECT * FROM conseiller WHERE `login`=?";
 
 			pst = cn.prepareStatement(sql);
 			pst.setString(1, loginEmploye);
 
 			rs = pst.executeQuery();
+
 			rs.next();
+			nom = rs.getString(1);
+			prenom = rs.getString(2);
+			id = rs.getInt(3);
+			log = rs.getString(4);
+			mdp = rs.getString(5);
+			 
 
-			id = rs.getInt(1);
-			log = rs.getString(2);
-			 mdp = rs.getString(3);
-			System.out.println("Lemdp du conseiller est " + mdp);
-
-			//conseiller = new Conseiller(id,log,mdp);				
-
+			conseiller = new Conseiller(nom, prenom, id,log,mdp);				
+			//System.out.println(conseiller);
 			return conseiller;
 
-			// }
+			
 		} catch (SQLException e) {
 			System.out.println("==========ERREUR 007=============");
 			//e.printStackTrace();

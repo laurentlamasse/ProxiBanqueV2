@@ -7,16 +7,12 @@ import com.gtm.proxibanquev2.domaine.Employe;
 public class LoginService {
 
 	public boolean checkLogin(Conseiller conseiller) {
+		System.out.println("Dans servicelogin");
+
 		ConseillerDAO cDAO = new ConseillerDAO();
 		Conseiller conseildao;
 		conseildao = cDAO.getConseillerFromLogin(conseiller.getLogin());
-		System.out.println("Conseiller cherché " + conseiller);
 
-		System.out.println("Conseiller trouvé " + conseildao);
-		System.out.println("Conseiller trouvé " +conseiller.getLogin().equals(conseildao.getLogin())
-);
-		System.out.println("Conseiller trouvé " +conseiller.getMdp().equals(conseildao.getMdp()))
-				;
 		
 		if (conseiller.getLogin().equals(conseildao.getLogin()) == true
 				&& conseiller.getMdp().equals(conseildao.getMdp())== true)

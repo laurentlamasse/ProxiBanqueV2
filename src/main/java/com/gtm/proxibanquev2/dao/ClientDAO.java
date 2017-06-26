@@ -10,30 +10,27 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Conseiller;
 
 public class ClientDAO {
 
-	public boolean addClientBase(Client client) {
+	public boolean addClientBase(Client client) { // Teste ok
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
 		PreparedStatement pst = null;
-		ResultSet rs = null;
-		Client cliensent = null;
-		// boolean bool = false;
 
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-System.out.println(client);
+			System.out.println(client);
 			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "INSERT INTO `Client` " + "(`nom`, `prenom`, `email`,`ville`,`adresse`,`codePostal`,`telephone`,`numeroClient`,`numeroConseiller`)VALUES"
-			+"(?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO `Client` "
+					+ "(`nom`, `prenom`, `email`,`ville`,`adresse`,`codePostal`,`telephone`,`numeroClient`,`numeroConseiller`)VALUES"
+					+ "(?,?,?,?,?,?,?,?,?)";
 
 			pst = cn.prepareStatement(sql);
 
@@ -47,7 +44,6 @@ System.out.println(client);
 			pst.setInt(8, client.getNumeroClient());
 			pst.setInt(9, client.getNumeroconseiller());
 
-	
 			pst.executeUpdate();
 
 			return true;
@@ -67,7 +63,7 @@ System.out.println(client);
 		return false;
 	}
 
-	public boolean removeClientBase(Client client) {
+	public boolean removeClientBase(Client client) { // Teste ok
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -143,8 +139,7 @@ System.out.println(client);
 
 	}
 
-	public Collection<Client> getListeCLient() {
-		// TODO Auto-generated method stub
+	public List<Client> getListeCLient() {
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
@@ -160,16 +155,20 @@ System.out.println(client);
 			cn = DriverManager.getConnection(url, login, passwd);
 			st = cn.createStatement();
 
-			String sql = "SELECT * FROM `Client` WHERE 1 ";
+			String sql = "SELECT * FROM `client` WHERE 1 ";
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-				//PAS FINI? REFAIRE CLIENT AVEC TOUS LES PARAMETRES
-				//Client tempoclient = new Client("nom", "prenom", rs.getString("Adresse"),  "codepostal", "ville" , "telephone", rs.getInt("NumeroClient"));
-				//listeclient.add(tempoclient);
+
+				Client tempoclient = new Client(rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"),
+						rs.getString("codePostal"), rs.getString("email"), rs.getString("ville"),
+						rs.getString("telephone"), rs.getInt("numeroConseiller"), rs.getInt("numeroClient"));
+				listeclient.add(tempoclient);
 
 			}
 		} catch (SQLException e) {
+			System.out.println("SQL EXCEPTION");
+
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -181,10 +180,13 @@ System.out.println(client);
 				e.printStackTrace();
 			}
 		}
+		System.out.println(listeclient);
+		System.out.println("AVANT RETURN");
+
 		return listeclient;
 	}
 
-	public Client getCLient(Integer idclient) {
+	public Client getCLient(int idclient) {
 
 		// TODO Auto-generated method stub
 		String url = "jdbc:mysql://localhost/proxybanque";
@@ -195,29 +197,28 @@ System.out.println(client);
 		ResultSet rs = null;
 		Client client = null;
 		try {
-
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "SELECT * FROM `Client` WHERE `NumeroClient`=?";
 
+			String sql = "SELECT * FROM `client` WHERE `numeroClient`=?";
+			// String sql = "SELECT * FROM `client` WHERE `id`=?";
 			pst = cn.prepareStatement(sql);
 			pst.setInt(1, idclient);
-			rs = pst.executeQuery(sql);
+			System.out.println("avant lr rs");
 
-			System.out.println("Le client est cherché et l'ID est  " + idclient);
+			rs = pst.executeQuery(sql); // Bug ICI
+			System.out.println("avant le next");
 
 			rs.next();
 
-			String email = rs.getString(1);
+			// System.out.println("Le client est cherché et l'ID est " +
+			// idclient);
 
-			String adresse = rs.getString(2);
+			System.out.println("avant le client");
 
-			Integer numeroClient = rs.getInt(3);
-
-			String type = rs.getString(4);
-			//PAS FINI REFAIRE CLIENT AVEC TOUS LES PARAMETRES
-
-			//client = new Client("nom", "prenom", adresse,  "codepostal", "ville" , "telephone", numeroClient);
+			client = new Client(rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"),
+					rs.getString("codePostal"), rs.getString("email"), rs.getString("ville"), rs.getString("telephone"),
+					rs.getInt("numeroConseiller"), rs.getInt("numeroClient"));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,56 +236,49 @@ System.out.println(client);
 
 	}
 
-/*	public void getListeCLientConseiller(Conseiller conseiller) {
-
+	public ArrayList<Client> getListeCLientConseiller(Conseiller conseiller) { //testé en dur, fonctionne
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
-		Statement st = null;
+		PreparedStatement pst = null;
 		ResultSet rs = null;
-		ArrayList<Client> listeclient = new ArrayList();
+		ArrayList<Client> listeclientConseiller = new ArrayList();
 
 		try {
-
 			Class.forName("com.mysql.jdbc.Driver");
-
 			cn = DriverManager.getConnection(url, login, passwd);
-			st = cn.createStatement();
 
-			String sql = "SELECT * FROM `Client` WHERE XXXX ";
-			rs = st.executeQuery(sql);
+			String sql = "SELECT * FROM `client` WHERE `numeroConseiller`=?";
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, conseiller.getId());
+			System.out.println("Dans le try"+  conseiller. getId());
+
+			rs = pst.executeQuery();
 
 			while (rs.next()) {
 
-				Client tempoclient = new Client(rs.getString("Email"), rs.getString("Adresse"),
-						rs.getInt("NumeroClient"));
-				listeclient.add(tempoclient);
+				Client tempoclient = new Client(rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"),
+						rs.getString("codePostal"), rs.getString("email"), rs.getString("ville"),
+						rs.getString("telephone"), rs.getInt("numeroConseiller"), rs.getInt("numeroClient"));
+				listeclientConseiller.add(tempoclient);
 
 			}
 		} catch (SQLException e) {
+			System.out.println("SQL EXCEPTION");
+
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				cn.close();
-				st.close();
+				pst.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return listeclient;
-		
-		
-	} */
-	public void getListeCLientConseiller(Conseiller conseiller) {
-		// TODO Auto-generated method stub
-	}
-
-	public List<Client> getListeClient() {
-		// TODO Auto-generated method stub
-		return null;
+		return listeclientConseiller;
 	}
 
 }
