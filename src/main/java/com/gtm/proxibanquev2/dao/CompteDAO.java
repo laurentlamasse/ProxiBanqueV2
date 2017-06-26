@@ -10,10 +10,11 @@ import javax.persistence.Query;
 
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Compte;
+import com.gtm.proxibanquev2.domaine.Virement;
 
 public class CompteDAO {
 
-	public void effectuerVirement() {// virement
+	public void effectuerVirement(Virement virement) {// virement
 	}
 
 	public boolean modifierCompte(Compte compte) {

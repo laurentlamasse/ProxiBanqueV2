@@ -1,20 +1,20 @@
 package com.gtm.proxibanquev2.domaine;
 
-public class Transaction {
+public class Virement {
 
 	//Proprietes
 	private int numCompteDebite, numCompteCredite;
 	float montantVirer;
 	
 	//Constructeur
-	public Transaction(int numCompteDebite, int numCompteCredite, float montantVirer){
+	public Virement(int numCompteDebite, int numCompteCredite, float montantVirer){
 		this.numCompteDebite=numCompteDebite;
 		this.numCompteCredite=numCompteCredite;
 		this.montantVirer=montantVirer;
 	}
 	
 	//Constructeur vide
-	public Transaction(){
+	public Virement(){
 		
 	}
 
