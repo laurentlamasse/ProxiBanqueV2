@@ -53,33 +53,25 @@
 	<div class="row espace"></div>
 	
 	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4 notresize">
-			<div class="corps-entete">BIENVENUE</div>
-			<div class="corps-contenu">
-			<form>
-				<div class="form-group">
-					<label for="exampleInputEmail1">Login :</label>
-					<input id="login" class="form-control" type="text"  placeholder="Entrez votre login">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputEmail1">Password :</label>
-					<input id="password" class="form-control" type="password" placeholder="Entez votre mot de passe">
-				</div>
-				<div class="form-check">
-					<label class="form-check-label">
-					<input id="checkRememberMe" class="form-check-input" type="checkbox">
-					Se souvenir de moi
-					</label>
-				</div>
-				<div class="button-right">
-					<button id="buttonConnection" class="btn btn-primary" type="submit">Se connecter</button>
-				</div>
-			</form>
+		<div class="col-lg-3"></div>
+		<div class="col-lg-6">
+			<div class="corps-entete">ERREUR</div>
+			<div class="corps-contenu error-template">
+			<h1>Oops!</h1>
+			<h2>404 Not Found</h2>
+			<div class="error-details">
+			Désolé, une erreur est apparue. La page demandée n'existe pas !<br>
 			</div>
-        </div>
-		<div class="col-lg-4"></div>
-	</div>
+			<div class="error-actions">
+			<a href="" class="btn btn-primary">
+				<i class="icon-home icon-white"></i> Take Me Home </a>
+			<a href="" class="btn btn-default">
+				<i class="icon-envelope"></i> Contact Support </a>
+			</div>
+			</div>
+		</div>
+		<div class="col-lg-3"></div>
+    </div>
 	<!-- ==================================[BLOC CORPS]================================== -->
 	
 	<!-- ==================================[BLOC FOOTER]================================== -->

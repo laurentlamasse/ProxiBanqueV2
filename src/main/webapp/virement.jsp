@@ -35,12 +35,26 @@
 				<div id="navbar1" class="navbar-collapse collapse">
 					<div class="row menu">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="clients.jsp" class="glyphicon glyphicon-log-in"> Connexion</a></li>
+							<li><a href="#" class="glyphicon glyphicon-off"> Déconnexion</a></li>
 						</ul>
 					</div>
 					<div class="row menu">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="active"><a href="index.jsp" class="glyphicon glyphicon-home"> Accueil</a></li>
+							<li class="active dropdown">
+								<a href="#" class="dropdown-toggle glyphicon glyphicon-credit-card" data-toggle="dropdown" role="button" aria-expanded="false"> Clients <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="clients.jsp">Afficher la liste</a></li>
+									<li><a href="creerClient.jsp">Créer un client</a></li>
+								</ul>
+							</li>
+							<li><a href="virement.jsp" class="glyphicon glyphicon-transfer"> Virement</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-expanded="false"> Conseillers <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Afficher la liste</a></li>
+									<li><a href="#">Créer un conseiller</a></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -53,32 +67,28 @@
 	<div class="row espace"></div>
 	
 	<div class="row">
-		<div class="col-lg-4"></div>
-		<div class="col-lg-4 notresize">
-			<div class="corps-entete">BIENVENUE</div>
+		<div class="col-lg-12">
+			<div class="corps-entete">EFFECTUER UN VIREMENT</div>
 			<div class="corps-contenu">
-			<form>
-				<div class="form-group">
-					<label for="exampleInputEmail1">Login :</label>
-					<input id="login" class="form-control" type="text"  placeholder="Entrez votre login">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputEmail1">Password :</label>
-					<input id="password" class="form-control" type="password" placeholder="Entez votre mot de passe">
-				</div>
-				<div class="form-check">
-					<label class="form-check-label">
-					<input id="checkRememberMe" class="form-check-input" type="checkbox">
-					Se souvenir de moi
-					</label>
-				</div>
-				<div class="button-right">
-					<button id="buttonConnection" class="btn btn-primary" type="submit">Se connecter</button>
-				</div>
-			</form>
+				<form>
+					<div class="form-group">
+						<label for="debiteurVirement">Identifiant du compte à débiter</label>
+						<input id="debiteurVirement" class="form-control" name="debiteurVirement" type="number" placeholder="Identifiant du débiteur">
+					</div>
+					<div class="form-group">
+						<label for="créditeurVirement">Identifiant du compte à créditer</label>
+						<input id="créditeurVirement" class="form-control" name="créditeurVirement" type="number" placeholder="Identifiant du créditeur">
+					</div>
+					<div class="form-group">
+						<label for="sommeVirement">Somme</label>
+						<input id="sommeVirement" class="form-control" name="sommeVirement" type="number" placeholder="Entrez la somme de la transaction">
+					</div>
+					<div class="button-right">
+					<button id="buttonCreateClient" class="btn btn-primary" type="submit">Appliquer</button>
+					</div>
+				</form>
 			</div>
-        </div>
-		<div class="col-lg-4"></div>
+		</div>
 	</div>
 	<!-- ==================================[BLOC CORPS]================================== -->
 	

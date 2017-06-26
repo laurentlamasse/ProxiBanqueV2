@@ -1,0 +1,128 @@
+/*=====Corps de la page=====*/
+body
+{	
+	/*Texte*/
+	font-family: Calibri;
+	font-size : 16px;
+	
+	/*Fond*/
+	background-color: rgb(15,52,96);
+	background-image: url('../img/backgrounddiamond.png');
+	background-size: 50px 50px;
+	
+	/*Marge*/
+	margin: 10px;
+	padding: 0px;
+}
+
+/*=====Menu=====*/
+.navbar
+{
+  min-height: 100px;
+}
+
+
+.navbar-brand img {
+  height: 70px;
+}
+
+.navbar-toggle
+{
+   margin-top:58px;
+}
+
+.row .menu{
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.menu-texte
+{
+	font-family: Calibri;
+}
+
+
+
+/*=====Corps/Tableau=====*/
+.btn-primary
+{
+	background-color: rgb(5,174,231);
+}
+
+.corps-entete
+{
+	/*Marge*/
+	margin-top: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	
+	/*Texte*/
+	color: rgb(245,245,245);
+	font-size: large;
+	font-weight : bold;
+	
+	min-width: fit-content;
+	
+	/*Fond*/
+	background-color: rgb(34,34,34);
+}
+
+.corps-contenu
+{
+	/*Marge*/
+	margin-bottom: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	
+	min-width: fit-content;
+	
+	/*Fond*/
+	background-color: rgb(245,245,245);
+}
+
+.button-right
+{
+	text-align:right;
+}
+
+/*=====Footer=====*/
+footer{
+	
+	/*Fond*/
+   background-color: rgb(34,34,34);
+   
+   /*Position*/
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+	
+	/*Text*/
+    text-align: center;
+    color: rgb(245,245,245);
+}
+
+footer p {
+	/*Marge*/
+    padding: 10.5px;
+    margin: 0px;
+    line-height: 100%;
+}
+
+footer a
+{
+	/*Texte*/
+	color:rgb(247,170,11);
+	text-decoration:none;
+}
+
+
+/*=====Error=====*/
+.error-template {padding: 40px 15px;text-align: center;}
+.error-actions {margin-top:15px;margin-bottom:15px;}
+.error-actions .btn { margin-right:10px; }
