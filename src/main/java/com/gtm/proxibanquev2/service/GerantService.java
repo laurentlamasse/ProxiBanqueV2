@@ -1,5 +1,6 @@
 package com.gtm.proxibanquev2.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.gtm.proxibanquev2.dao.ConseillerDAO;
@@ -12,10 +13,10 @@ public class GerantService {
 		conseillerDao.addConseillerBase(conseiller);
 	}
 
-	public List<Conseiller> getListeConseiller(){
+	public List <Conseiller> getListeConseiller(){
 		List<Conseiller> listeConseiller = null;
 		ConseillerDAO conseillerDao = new ConseillerDAO();
-		listeConseiller= conseillerDao.getListeConseiller;
+		listeConseiller= conseillerDao.getListeConseiller();
 		return listeConseiller;		
 	}
 }

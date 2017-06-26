@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -102,7 +103,7 @@ public class ConseillerDAO {
 		return false;
 	}
 
-	public Collection<Conseiller> getListeConseiller() {
+	public List<Conseiller> getListeConseiller() {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";

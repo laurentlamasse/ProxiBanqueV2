@@ -18,7 +18,6 @@ public class Virement {
 		
 	}
 
-	//Getters setters
 	public Compte getCompteCredite() {
 		return compteCredite;
 	}
@@ -42,14 +41,14 @@ public class Virement {
 	public void setMontantVirer(float montantVirer) {
 		this.montantVirer = montantVirer;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "Transaction [numCompteDebite=" + numCompteDebite + ", numCompteCredite=" + numCompteCredite
-				+ ", montantVirer=" + montantVirer + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "Virement [compteCredite=" + compteCredite + ", compteDebite=" + compteDebite + ", montantVirer="
+				+ montantVirer + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
 
+	
 
 }
