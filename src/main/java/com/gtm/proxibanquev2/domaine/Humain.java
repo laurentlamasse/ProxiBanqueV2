@@ -10,6 +10,10 @@ public abstract class Humain {
 		this.nom=nom;
 		this.prenom=prenom;
 	}
+	
+	public Humain(){
+	
+	}
 
 	//Getters setters
 	public String getNom() {

@@ -18,7 +18,6 @@ import javax.persistence.Query;
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Conseiller;
 
-import domaine.Livre;
 
 public class ConseillerDAO {
 
@@ -29,7 +28,6 @@ public class ConseillerDAO {
 		String passwd = "";
 		Connection cn = null;
 		PreparedStatement pst = null;
-		ResultSet rs = null;
 
 		try {
 
@@ -205,6 +203,23 @@ public class ConseillerDAO {
 		String mdp =null;
 		String log = null;
 		int id = 0;
+		
+		
+		/* 
+		 * Class.forName("com.mysql.jdbc.Driver");
+			cn = DriverManager.getConnection(url, login, passwd);
+			String sql = "SELECT * FROM humains WHERE prenom=?";
+
+			pst = cn.prepareStatement(sql);
+			 pst.setString(1, prenomscan);
+			rs = pst.executeQuery();
+
+			System.out.println("Nous cherchons bien le prénom qui est " + prenomscan);
+
+			rs.next();
+
+			nom = rs.getString(1);
+			System.out.println("Le nom de la personne est : == " + nom);*/
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
@@ -215,7 +230,6 @@ public class ConseillerDAO {
 			pst.setString(1, loginEmploye);
 
 			rs = pst.executeQuery();
-
 			rs.next();
 
 			id = rs.getInt(1);

@@ -1,5 +1,10 @@
 package com.gtm.proxibanquev2.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
@@ -17,41 +22,90 @@ public class CompteDAO {
 	public void effectuerVirement(Virement virement) {// virement
 	}
 
+	
 	public boolean modifierCompte(Compte compte) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 
-		em.merge(compte); // Pas sur de la méthode
+		try {
 
-		tx.commit();
+			Class.forName("com.mysql.jdbc.Driver");
 
-		System.out.println("Voici le compte une fois modifié" + compte);
+			cn = DriverManager.getConnection(url, login, passwd);
+			// public Client(String email, String adresse, int numeroClient){
+			String sql = "UPDATE `Compte` " + "WHERE (`NumeroCompte`, `Solde`)VALUES" + "(?,?)";
 
-		em.close();
-		emf.close();
-		return true;
+			pst = cn.prepareStatement(sql);
+
+			pst.setInt(1, compte.getNumeroCompte());
+			pst.setFloat(2, compte.getSolde());
+			pst.executeUpdate();
+			/*
+			int numcomptelu = rs.getInt(1);
+			Float soldelu = rs.getFloat(2);
+			*/
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 
-	public Client addCompteBase(Client client, Compte compte) {
+	public boolean addCompteBase(Compte compte) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
 
-		em.persist(client);
-		Client client2 = em.find(Client.class, client.getNumeroClient());
+		try {
 
-		tx.commit();
+			Class.forName("com.mysql.jdbc.Driver");
 
-		System.out.println("Voici le client inséré" + client);
+			cn = DriverManager.getConnection(url, login, passwd);
+			// public Client(String email, String adresse, int numeroClient){
+			String sql = "INSERT INTO `Compte` " + "(`NumeroCompte`, `Solde`)VALUES" + "(?,?)";
 
-		em.close();
-		emf.close();
-		return client2;
+			pst = cn.prepareStatement(sql);
+
+			pst.setInt(1, compte.getNumeroCompte());
+			pst.setFloat(2, compte.getSolde());
+			pst.executeUpdate();
+			/*
+			int numcomptelu = rs.getInt(1);
+			Float soldelu = rs.getFloat(2);
+			*/
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 
 	}
 

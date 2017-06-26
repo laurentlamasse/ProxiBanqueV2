@@ -21,7 +21,7 @@ import com.gtm.proxibanquev2.domaine.Conseiller;
 
 public class ClientDAO {
 
-	public Client addClientBase(Client client) {
+	public boolean addClientBase(Client client) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -29,6 +29,8 @@ public class ClientDAO {
 		Connection cn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
+		Client cliensent = null;
+		// boolean bool = false;
 
 		try {
 
@@ -44,7 +46,8 @@ public class ClientDAO {
 			pst.setString(2, client.getAdresse());
 			pst.setInt(3, client.getNumeroClient());
 			pst.executeUpdate();
-			return client;
+
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -58,7 +61,7 @@ public class ClientDAO {
 				e.printStackTrace();
 			}
 		}
-		return client;
+		return false;
 	}
 
 	public boolean removeClientBase(Client client) {
@@ -75,7 +78,6 @@ public class ClientDAO {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			cn = DriverManager.getConnection(url, login, passwd);
-			// public Client(String email, String adresse, int numeroClient){
 			String sql = "DELETE FROM `Client` " + "WHERE `NumeroClient`=?";
 			pst = cn.prepareStatement(sql);
 			pst.setInt(1, client.getNumeroClient());
@@ -98,20 +100,43 @@ public class ClientDAO {
 
 	public boolean updateClientBase(Client client) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demojpa-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
 
-		em.merge(client); // Pas sur de la méthode
+		try {
 
-		tx.commit();
+			Class.forName("com.mysql.jdbc.Driver");
 
-		System.out.println("Voici le client supprimé" + client);
+			cn = DriverManager.getConnection(url, login, passwd);
+			String sql = "UPDATE client SET Email = ?, Adresse = ?, NumeroCLient = ?" + " NumeroCLient = ?";
+			pst = cn.prepareStatement(sql);
 
-		em.close();
-		emf.close();
-		return true;
+			pst.setString(1, client.getEmail());
+			pst.setString(2, client.getAdresse());
+			pst.setInt(3, client.getNumeroClient());
+			pst.setInt(4, client.getNumeroClient());
+
+			pst.executeUpdate();
+
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 
 	}
 
@@ -174,7 +199,7 @@ public class ClientDAO {
 
 			pst = cn.prepareStatement(sql);
 			pst.setInt(1, idclient);
-			rs = pst.executeQuery();
+			rs = pst.executeQuery(sql);
 
 			System.out.println("Le client est cherché et l'ID est  " + idclient);
 
@@ -206,8 +231,48 @@ public class ClientDAO {
 
 	}
 
-	public void getListeCLientConseiller(Conseiller conseiller) {
+/*	public void getListeCLientConseiller(Conseiller conseiller) {
 
-	}
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		ArrayList<Client> listeclient = new ArrayList();
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			cn = DriverManager.getConnection(url, login, passwd);
+			st = cn.createStatement();
+
+			String sql = "SELECT * FROM `Client` WHERE XXXX ";
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+
+				Client tempoclient = new Client(rs.getString("Email"), rs.getString("Adresse"),
+						rs.getInt("NumeroClient"));
+				listeclient.add(tempoclient);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return listeclient;
+		
+		
+	} */
 
 }

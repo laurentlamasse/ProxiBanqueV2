@@ -13,7 +13,11 @@ public class LoginService {
 		System.out.println("Conseiller cherché " + conseiller);
 
 		System.out.println("Conseiller trouvé " + conseildao);
-
+		System.out.println("Conseiller trouvé " +conseiller.getLogin().equals(conseildao.getLogin())
+);
+		System.out.println("Conseiller trouvé " +conseiller.getMdp().equals(conseildao.getMdp()))
+				;
+		
 		if (conseiller.getLogin().equals(conseildao.getLogin()) == true
 				&& conseiller.getMdp().equals(conseildao.getMdp())== true)
 			return true;

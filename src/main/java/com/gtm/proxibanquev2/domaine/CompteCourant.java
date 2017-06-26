@@ -6,8 +6,8 @@ public class CompteCourant extends Compte{
 	private int decouvert;
 	
 	//Constructeur
-	public CompteCourant(int numeroCompte, float solde, int decouvert) {
-		super(numeroCompte, solde);
+	public CompteCourant(int numeroCompte, float solde, int decouvert, int numeroClient) {
+		super(numeroCompte, solde, numeroClient);
 		this.decouvert=decouvert;
 	}
 	
@@ -28,9 +28,12 @@ public class CompteCourant extends Compte{
 	@Override
 	public String toString() {
 		return "CompteCourant [decouvert=" + decouvert + ", getNumeroCompte()=" + getNumeroCompte() + ", getSolde()="
-				+ getSolde() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ getSolde() + "]";
 	}
+
+
+	
+	
 
 	
 }

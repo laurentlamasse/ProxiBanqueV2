@@ -1,29 +1,27 @@
 package com.gtm.proxibanquev2.domaine;
 
-public abstract class Employe {
-	
-	//Proprietes
+public abstract class Employe extends Humain {
+
+	// Proprietes
 	private String login, mdp;
 	private int id;
-	
-	//Constructeur
-	public Employe(int id, String login, String mdp){
-		this.login=login;
-		this.mdp=mdp;
-		this.id=id;
-	}
-	
-	public Employe( String login, String mdp){
-		this.login=login;
-		this.mdp=mdp;
-	}
-	
-	//Constructeur vide
-	public Employe(){
-		
+
+	// Constructeur
+	public Employe(String nom, String prenom, int id, String login, String mdp) {
+		super(nom, prenom);
+		this.login = login;
+		this.mdp = mdp;
+		this.id = id;
 	}
 
-	//Getters setters
+	public Employe(String login, String mdp) {
+		super();
+		this.login = login;
+		this.mdp = mdp;
+
+	}
+
+	// Getters setters
 	public String getLogin() {
 		return login;
 	}
@@ -48,5 +46,4 @@ public abstract class Employe {
 		this.id = id;
 	}
 
-	
 }

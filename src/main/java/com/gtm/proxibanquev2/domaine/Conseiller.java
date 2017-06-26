@@ -6,26 +6,48 @@ import javax.persistence.Id;
 public class Conseiller extends Employe{
 
 	private int id;
-	
-	public Conseiller(int id, String login, String mdp) {
-		super(id, login, mdp);
+	private int idconseiller;
+	public Conseiller(String nom, String prenom, int id, String login, String mdp) {
+		super(nom, prenom, id, login, mdp);
 	}
 
-	public Conseiller( String login, String mdp) {
-		super( login, mdp);
+	public Conseiller(String login, String mdp) {
+		super(login, mdp);
+	}
+	
+	
+	
+	public int getId() {
+		return id;
 	}
 
-	
-	//constructeur vide
-	public Conseiller(){
-		
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
+
+
+	public int getIdconseiller() {
+		return idconseiller;
+	}
+
+
+
+	public void setIdconseiller(int idconseiller) {
+		this.idconseiller = idconseiller;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Conseiller [getLogin()=" + getLogin() + ", getMdp()=" + getMdp() + ", getId()=" + getId()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "Conseiller [id=" + id + ", getLogin()=" + getLogin() + ", getNom()=" + getNom() + ", getPrenom()="
+				+ getPrenom() + "]";
 	}
+
+
 
 	
 }

@@ -6,8 +6,8 @@ public class CompteEpargne extends Compte {
 	private float remuneration;
 	
 	//Constructeur
-	public CompteEpargne(int numeroCompte, float solde, float remuneration) {
-		super(numeroCompte, solde);
+	public CompteEpargne(int numeroCompte, float solde, float remuneration, int numeroClient) {
+		super(numeroCompte, solde, numeroClient);
 		this.remuneration=remuneration;
 	}
 	
@@ -24,13 +24,16 @@ public class CompteEpargne extends Compte {
 	public void setRemuneration(float remuneration) {
 		this.remuneration = remuneration;
 	}
+	
+	
 
 	@Override
 	public String toString() {
 		return "CompteEpargne [remuneration=" + remuneration + ", getNumeroCompte()=" + getNumeroCompte()
-				+ ", getSolde()=" + getSolde() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", getSolde()=" + getSolde() + ", getClass()=" + getClass() + "]";
 	}
+
+	
 	
 	
 }
