@@ -1,4 +1,4 @@
-package com.gtm.proxibanqueV2.DAO;
+package com.gtm.proxibanquev2.dao;
 
 public class CRUDClientDAO {
 

@@ -1,4 +1,4 @@
-package com.gtm.proxibanqueV2.Service;
+package com.gtm.proxibanquev2.service;
 
 public class CRUDClientService {
 
