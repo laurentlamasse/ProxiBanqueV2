@@ -4,6 +4,9 @@
 <%@page import="org.apache.catalina.connector.Request"%>
 <%@page import="com.sun.net.httpserver.HttpServer"%>
 <%@page import="com.gtm.proxibanquev2.domaine.Conseiller"%>
+<%@page import="com.gtm.proxibanquev2.domaine.Client"%>
+<%@page import="java.util.ArrayList"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -50,7 +53,8 @@
 				<div id="navbar1" class="navbar-collapse collapse">
 					<div class="row menu">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="index.jsp" class="glyphicon glyphicon-off"> <%=" Déconnexion[" + user.getPrenom() + " " + user.getNom() + "]"%>
+							<li><a href="index.jsp" class="glyphicon glyphicon-off">
+									<%=" Déconnexion[" + user.getPrenom() + " " + user.getNom() + "]"%>
 							</a></li>
 						</ul>
 					</div>
@@ -91,7 +95,7 @@
 			<div class="col-lg-3">
 				<div class="corps-entete">RECHERCHE</div>
 				<div class="corps-contenu">
-					<form>
+					<form method="GET" action="ListeClientServlet">
 						<div class="form-group">
 							<label for="idClient">Identifiant</label> <input id="idClient"
 								class="form-control" name="idClient" type="number"
@@ -132,31 +136,28 @@
 						</thead>
 						<tbody>
 
-
-							<tr>
-								<td><input class="checkthis" type="checkbox" /></td>
-								<td>1</td>
-								<td>FREEMAN</td>
-								<td>Gordon</td>
-								<td>100 rue du paumé</td>
-								<td>06900</td>
-								<td>BLACK MESA</td>
-								<td>0123456789</td>
-								<td><p data-placement="top" data-toggle="tooltip"
-										title="Edit">
-										<button class="btn btn-primary btn-xs" data-title="Edit"
-											data-toggle="modal" data-target="#edit">
-											<span class="glyphicon glyphicon-pencil"></span>
-										</button>
-									</p></td>
-								<td><p data-placement="top" data-toggle="tooltip"
-										title="Delete">
-										<button class="btn btn-warning btn-xs" data-title="Delete"
-											data-toggle="modal" data-target="#delete">
-											<span class="glyphicon glyphicon-trash"></span>
-										</button>
-									</p></td>
-							</tr>
+							<%
+								Object resultat = session.getAttribute("listeClients");
+								if(resultat != null)
+								{
+									ArrayList<Client> liste = (ArrayList<Client>) session.getAttribute("listeClients");
+									for (Client client : liste) {
+										out.print("<tr>" + "<td><input class=\"checkthis\" type=\"checkbox\" /></td>" + "<td>1</td>"
+												+ "<td>" + client.getNom() + "</td>" + "<td>" + client.getPrenom() + "</td>" + "<td>"
+												+ client.getAdresse() + "</td>" + "<td>" + client.getCodepostal() + "</td>" + "<td>"
+												+ client.getVille() + "</td>" + "<td>" + client.getTelephone() + "</td>"
+												+ "<td><p data-placement=\"top\" data-toggle=\"tooltip\"" + "title=\"Edit\">"
+												+ "<button class=\"btn btn-primary btn-xs\" data-title=\"Edit\""
+												+ "data-toggle=\"modal\" data-target=\"#edit\">"
+												+ "<span class=\"glyphicon glyphicon-pencil\"></span>" + "</button>" + "</p></td>"
+												+ "<td><p data-placement=\"top\" data-toggle=\"tooltip\"" + "title=\"Delete\">"
+												+ "<button class=\"btn btn-warning btn-xs\" data-title=\"Delete\""
+												+ "data-toggle=\"modal\" data-target=\"#delete\">"
+												+ "<span class=\"glyphicon glyphicon-trash\"></span>" + "</button>" + "</p></td>"
+												+ "</tr>");
+									}
+								}
+							%>
 
 						</tbody>
 

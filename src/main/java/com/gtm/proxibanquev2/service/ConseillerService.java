@@ -69,7 +69,6 @@ public class ConseillerService {
 	 * @return client l'objet client retourné par le DAO
 	 */
 	public Client obtenirClient(int id) {
-		// TODO a faire
 		Client client = null;
 		ClientDAO clientDao = new ClientDAO();
 		return client;

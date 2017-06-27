@@ -151,14 +151,17 @@ public class ClientDAO {
 
 	}
 
-	public List<Client> getListeCLient() { 
+	public List<Client> getListeCLient() {
+		
+		ArrayList<Client> listeclient = new ArrayList();
+		
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		ArrayList<Client> listeclient = new ArrayList();
+		
 
 		try {
 
