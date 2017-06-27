@@ -22,4 +22,12 @@ public class GerantService {
 		//listeConseiller= conseillerDao.getListeConseiller();
 		return listeConseiller;		
 	}
+	
+	public Conseiller  getOneConseiller(Conseiller conseiller){
+		//TODO a faire
+		ConseillerDAO conseillerDao = new ConseillerDAO();
+		Conseiller conseillerger = conseillerDao.getOneConseiller(conseiller);
+		return conseillerger;		
+	}
+	
 }
