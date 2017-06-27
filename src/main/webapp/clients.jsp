@@ -53,7 +53,7 @@
 				<div id="navbar1" class="navbar-collapse collapse">
 					<div class="row menu">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="index.jsp" class="glyphicon glyphicon-off">
+							<li><a href="LogoutServlet" class="glyphicon glyphicon-off">
 									<%=" Déconnexion[" + user.getPrenom() + " " + user.getNom() + "]"%>
 							</a></li>
 						</ul>
