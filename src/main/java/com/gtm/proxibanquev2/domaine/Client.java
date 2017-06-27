@@ -20,6 +20,7 @@ public class Client extends Humain{
 		this.email=email;
 		this.adresse=adresse;
 		this.ville=ville;
+		this.email=email;
 		this.telephone=telephone;
 		this.numeroClient=numeroClient;
 		this.numeroconseiller = numeroconseiller;

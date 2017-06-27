@@ -8,16 +8,18 @@ import com.gtm.proxibanquev2.domaine.Conseiller;
 
 public class GerantService {
 	
-	public void creerConseiller(Conseiller conseiller){
+	public Conseiller creerConseiller(){
+		Conseiller conseiller = null;
 		ConseillerDAO conseillerDao = new ConseillerDAO();
-		conseillerDao.addConseillerBase(conseiller);
+		conseiller=conseillerDao.addConseillerBase(conseiller);
+		return conseiller;
 	}
 
 	public List <Conseiller> getListeConseiller(){
 		//TODO a faire
 		List<Conseiller> listeConseiller = null;
 		ConseillerDAO conseillerDao = new ConseillerDAO();
-		listeConseiller= conseillerDao.getListeConseiller();
+		//listeConseiller= conseillerDao.getListeConseiller();
 		return listeConseiller;		
 	}
 }
