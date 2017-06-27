@@ -51,15 +51,7 @@ public class ConseillerService {
 		return listeClients;
 	}
 	
-	/*
-	 * public List <Conseiller> getListeConseiller(){
-		List<Conseiller> listeConseiller = null;
-		ConseillerDAO conseillerDao = new ConseillerDAO();
-		listeConseiller= conseillerDao.getListeConseiller();
-		return listeConseiller;		
-	}
-	 * 
-	 */
+	
 	
 	public List<Compte> getListeCompte(Client client){
 		List<Compte> listeComptes;
