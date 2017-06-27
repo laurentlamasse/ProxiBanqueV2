@@ -6,7 +6,6 @@ import com.gtm.proxibanquev2.dao.ClientDAO;
 import com.gtm.proxibanquev2.dao.CompteDAO;
 import com.gtm.proxibanquev2.dao.ConseillerDAO;
 import com.gtm.proxibanquev2.domaine.Client;
-import com.gtm.proxibanquev2.domaine.Compte;
 import com.gtm.proxibanquev2.domaine.CompteCourant;
 import com.gtm.proxibanquev2.domaine.CompteEpargne;
 import com.gtm.proxibanquev2.domaine.Conseiller;
@@ -34,8 +33,8 @@ public class testCrudDUr {
 		
 		//compteDAO.addCompteCourant(compteCouranttest);
 		//compteDAO.addCompteEpargne(compteEpargnetest);
-		compteDAO.removeCompteCourant(compteCouranttest);
-		compteDAO.removeCompteEpargne(compteEpargnetest);
+		//compteDAO.removeCompteCourant(compteCouranttest);
+		//compteDAO.removeCompteEpargne(compteEpargnetest);
 
 		//System.out.println(conseillerdur);
 
@@ -56,31 +55,33 @@ public class testCrudDUr {
 		//System.out.println(gersev.getListeConseiller());
 		
 		
-		//Conseiller conseiller= new Conseiller("plop","plip");
+		Conseiller conseiller= new Conseiller("plop","plip");
 		//System.out.println(conseiller);
 
-		//LoginService logservice = new LoginService();
-		
-		//System.out.println(logservice.checkLogin(conseiller));
+		Conseiller conseiller2= new Conseiller("plop","flap");
+
+		LoginService logservice = new LoginService();
+		System.out.println(logservice.checkLogin(conseiller));
+		System.out.println(logservice.checkLogin(conseiller2));
+
 		
 		//System.out.println(conserv.getListeClient());
-		System.out.println(clientDAO.getListeCLient());
+		//System.out.println(clientDAO.getListeCLient());
 		
 		//System.out.println(clientDAO.getCLient(958));
 		
 		
 		//System.out.println(gersev.getListeConseiller());
-		/* 
-		 * String login = request.getParameter("login");
-		String mdp = request.getParameter("mdp");
-		Conseiller conseiller= new Conseiller(login,mdp);
-		LoginService logservice = new LoginService();
 		
-			*/
+		// String login = "plip";
+		//String mdp = "plop";
+		//Conseiller conseiller= new Conseiller(login,mdp);
+		//LoginService logservice = new LoginService();
 		
-		
+			
 		
 		
-
+		
+	
 	}
 }

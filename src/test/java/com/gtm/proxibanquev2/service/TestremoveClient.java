@@ -41,8 +41,9 @@ public class TestremoveClient {
 		clientDAO = new ClientDAO();
 		clienttest= new Client("Alexandre", "Pic", "ValFon", "69290", "apic@objis.net", "Lyon", "061870349", 898989,
 				898989);		clientDAO = new ClientDAO();
+				
 		System.out.println("===test de suppression d'un client===");
-
+		clientDAO.addClientBase(clienttest);
 		assertTrue("Test de supression du client", clientDAO.removeClientBase(clienttest));
 	}
 

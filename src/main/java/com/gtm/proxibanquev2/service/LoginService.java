@@ -7,17 +7,21 @@ import com.gtm.proxibanquev2.domaine.Employe;
 public class LoginService {
 
 	/**
-	 * Methode de la couche service qui permet de verifier le login et le mot de passe du conseiller. Si le login n'existe pas ou que le mot de passe est incorrect, le resultat est faux
-	 * @param conseiller Objet de type Conseiller qui ne comporte que le login et le mot de passe (utilise pour la verification uniquement)
-	 * @return Boolean qui indique le resultat de la verification
+	 * @author LAB
+	 * Cette methode effectue la verification du login et du mot de passe entrer par 
+	 * un conseiller dans la page de login.
+	 * Si un des champs ne correspond pas aux informations presentes en base de donnees,
+	 * la methode renvoie un booleen de valeur 'false'. Dans le cas contraire, elle renverra un
+	 * booleen de valeur 'true'
+	 * @param conseiller
+	 * @return boolean
 	 */
+	
 	public boolean checkLogin(Conseiller conseiller) {
-		System.out.println("Dans servicelogin");
-
 		ConseillerDAO cDAO = new ConseillerDAO();
 		Conseiller conseildao;
 		conseildao = cDAO.getConseillerFromLogin(conseiller.getLogin());
-		
+
 		if(conseildao == null)
 			return false;
 		

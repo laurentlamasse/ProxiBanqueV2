@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import com.gtm.proxibanquev2.service.LoginService;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,18 +28,9 @@ public class LoginServlet extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			traitement(req, resp);
-		} catch (ConseillerException e) {
-			System.out.println(e);
-		}
-	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -50,7 +39,6 @@ public class LoginServlet extends HttpServlet {
 		} catch (ConseillerException e) {
 			System.out.println(e);
 		}
-
 	}
 
 	protected void traitement(HttpServletRequest request, HttpServletResponse response)
@@ -66,11 +54,11 @@ public class LoginServlet extends HttpServlet {
 
 		// Session
 		HttpSession session = request.getSession();
-		
-		//Dispatcher
+
+		// Dispatcher
 		RequestDispatcher dispatcher;
 		session.setAttribute("conseillersession", null);
-		
+
 		// Verification password
 		if (logservice.checkLogin(conseiller) == true) {
 			// Recuperer le conseiller dans la base de donnees
@@ -79,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 				throw new ConseillerException();
 			session.setAttribute("conseillersession", conseiller);
 		}
-		
+
 		dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 

@@ -1,6 +1,8 @@
 package com.gtm.proxibanquev2.presentation;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.gtm.proxibanquev2.domaine.Client;
+import com.gtm.proxibanquev2.domaine.Compte;
 import com.gtm.proxibanquev2.service.ConseillerService;
 
 /**
- * Servlet implementation class AjoutClientServlet
+ * Servlet implementation class ListeComptesServlet
  */
-public class AjoutClientServlet extends HttpServlet {
+public class ListeComptesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjoutClientServlet() {
+    public ListeComptesServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,38 +33,29 @@ public class AjoutClientServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ajout(request, response);
+		listeComptes(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ajout(request, response);
-	}
-
-	protected void ajout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom =request.getParameter("createNomClient");
-		String prenom= request.getParameter("createPrenomClient");
-		String adresse =request.getParameter("createAdresseClient");
-		String codepostal= request.getParameter("createCodeClient");
-		String ville=request.getParameter("createVilleClient");
-		String email= request.getParameter("createEmail");
-		String telephone= request.getParameter("createTelClient");
-		int numConseiller= Integer.parseInt(request.getParameter("numConseiller"));
-		int numClient= Integer.parseInt(request.getParameter("numClient"));
-		
-		Client client=new Client(nom, prenom, adresse, codepostal, email, ville, telephone, numConseiller, numClient);
-		ConseillerService service = new ConseillerService();
-		service.ajouterClient(client);
-		
-		
-		RequestDispatcher dispatcher=null;
-		dispatcher= request.getRequestDispatcher("/confirmationcreationclient.html");
-		dispatcher.forward(request, response);
-		
+		listeComptes(request, response);
 	}
 	
+	protected void listeComptes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Client client = null;
+		List<Compte> listeComptes= new ArrayList<Compte>();
+		ConseillerService service = new ConseillerService();
+		//listeComptes=service.getListeCompte(client);
+		
+		HttpSession session=request.getSession();
+		
+		session.setAttribute("listeComptes", listeComptes);
+		
+		RequestDispatcher dispatcher=null;
+		dispatcher= request.getRequestDispatcher("/comptes.jsp");
+		dispatcher.forward(request, response);
+	}
+
 }

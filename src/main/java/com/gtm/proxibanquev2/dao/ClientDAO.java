@@ -15,7 +15,7 @@ import com.gtm.proxibanquev2.domaine.Conseiller;
 
 public class ClientDAO {
 
-	public boolean addClientBase(Client client) { // Teste ok
+	public boolean addClientBase(Client client) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -65,7 +65,7 @@ public class ClientDAO {
 
 	
 	
-	public boolean removeClientBase(Client client) { // Teste ok
+	public boolean removeClientBase(Client client) { 
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -101,7 +101,7 @@ public class ClientDAO {
 	
 	
 
-	public boolean updateClientBase(Client client) {//Teste en dur ok
+	public boolean updateClientBase(Client client) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -116,7 +116,7 @@ public class ClientDAO {
 
 			cn = DriverManager.getConnection(url, login, passwd);
 			
-			String sql = "UPDATE `client` SET nom=?,prenom =?, email=?, ville=?, adresse=?,codePostal=?,telephone=?,numeroClient=?, numeroConseiller=? WHERE numeroClient=" + client.getNumeroClient();
+			String sql = "UPDATE `client` SET nom=?,prenom =?, email=?, ville=?, adresse=?,codePostal=?,telephone=? WHERE numeroClient=" + client.getNumeroClient();
 
 			pst = cn.prepareStatement(sql);
 
@@ -127,8 +127,7 @@ public class ClientDAO {
 			pst.setString(5, client.getAdresse());
 			pst.setString(6, client.getCodepostal());
 			pst.setString(7, client.getTelephone());
-			pst.setInt(8, client.getNumeroClient());
-			pst.setInt(9, client.getNumeroconseiller());
+
 
 			pst.executeUpdate();
 			
@@ -152,7 +151,7 @@ public class ClientDAO {
 
 	}
 
-	public List<Client> getListeCLient() { //Fonctionne
+	public List<Client> getListeCLient() { 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
@@ -212,7 +211,6 @@ public class ClientDAO {
 			cn = DriverManager.getConnection(url, login, passwd);
 
 			String sql = "SELECT * FROM `client` WHERE `numeroClient`=?";
-			// String sql = "SELECT * FROM `client` WHERE `id`=?";
 			pst = cn.prepareStatement(sql);
 			pst.setInt(1, idclient);
 			System.out.println("avant lr rs");
@@ -222,8 +220,6 @@ public class ClientDAO {
 
 			rs.next();
 
-			// System.out.println("Le client est cherché et l'ID est " +
-			// idclient);
 
 			System.out.println("avant le client");
 
@@ -247,7 +243,7 @@ public class ClientDAO {
 
 	}
 
-	public ArrayList<Client> getListeCLientConseiller(Conseiller conseiller) { //testé en dur, fonctionne
+	public ArrayList<Client> getListeCLientConseiller(Conseiller conseiller) { 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";

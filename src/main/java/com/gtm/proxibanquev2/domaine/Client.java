@@ -1,5 +1,23 @@
 package com.gtm.proxibanquev2.domaine;
 
+/**
+ * @author LAB
+ * La classe Client est composee de son constructeur, des getters/setters, et de la methode toString() qui permet d'afficher les valeurs des attributs.
+ * Elle permet de construire un objet Client.
+ * 
+ * Cette classe implemente la classe abstraite 'Humain'. L'autre classe qui implemente Humain est 'Employe'
+ * @param nom - un String
+ * prenom - un String
+ * adresse - un String
+ * codepostal - un String
+ * email - un String
+ * ville - un String
+ * telephone - un String
+ * numeroConseiller - un int
+ * numeroClient - un int
+ */
+
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 public class Client extends Humain{
@@ -20,6 +38,7 @@ public class Client extends Humain{
 		this.email=email;
 		this.adresse=adresse;
 		this.ville=ville;
+		this.email=email;
 		this.telephone=telephone;
 		this.numeroClient=numeroClient;
 		this.numeroconseiller = numeroconseiller;

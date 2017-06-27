@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.gtm.proxibanquev2.domaine.Client;
 import com.gtm.proxibanquev2.domaine.Compte;
-import com.gtm.proxibanquev2.domaine.Virement;
 import com.gtm.proxibanquev2.service.ConseillerService;
 
 /**
@@ -52,7 +51,7 @@ public class VirementServlet extends HttpServlet {
 		//Instanciation d'un objet virement
 		//Compte compteDebite=new Compte(numDebite,compteDebite.getSolde());
 		//Compte compteCredite= new Compte(numCredite,compteCredite.getSolde());
-	//	Virement virement=new Virement(montant,compteCredite ,compteDebite);
+		//Virement virement=new Virement(montant,compteCredite ,compteDebite);
 		
 		//Passage à la couche service
 		//service.effectuerVirement(virement);

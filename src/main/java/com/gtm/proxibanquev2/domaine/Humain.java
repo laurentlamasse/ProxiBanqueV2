@@ -1,5 +1,15 @@
 package com.gtm.proxibanquev2.domaine;
 
+/**
+ * La classe Humain est une classe abstraite qui est implementee par 
+ * les classes Employe et Client
+ * @author Stagiaire
+ * @param
+ * nom - un String
+ * prenom - un String
+ *
+ */
+
 public abstract class Humain {
 
 	//Proprietes

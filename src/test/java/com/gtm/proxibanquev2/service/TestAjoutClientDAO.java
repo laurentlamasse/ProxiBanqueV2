@@ -40,8 +40,8 @@ public class TestAjoutClientDAO {
 	public void testAddClientBase() {
 
 		 clientDAO = new ClientDAO();
-		clienttest= new Client("Alexandre", "Pic", "ValFon", "69290", "apic@objis.net", "Lyon", "061870349", 8757,
-				87587);		clientDAO = new ClientDAO();
+		clienttest= new Client("Alexandre Valentin", "Pic", "ValFon", "69290", "apic@objis.net", "Lyon", "061870349", 9863,
+				76251);		clientDAO = new ClientDAO();
 		System.out.println("===test d'ajout d'un client dans la base de donnée===");
 
 		assertTrue("Test d'ajout d'un client", clientDAO.addClientBase(clienttest));

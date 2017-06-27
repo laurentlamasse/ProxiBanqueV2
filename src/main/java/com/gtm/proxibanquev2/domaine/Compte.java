@@ -1,5 +1,15 @@
 package com.gtm.proxibanquev2.domaine;
-
+/**
+* 
+* @author LAB
+*La classe Compte est une classe abstraite. Elle est implementee par les classes CompteCourant et CompteEpargne.
+*Elle possede son constructeur, des getters setters, une methode toString() afin d'afficher la valeur des parametres.
+*
+*@param 
+*numeroCompte - un int
+*solde - un float
+*numeroClient - un int
+*/
 public abstract class Compte {
 
 	//Proprietes
