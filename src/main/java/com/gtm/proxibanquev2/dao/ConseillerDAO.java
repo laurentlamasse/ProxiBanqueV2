@@ -21,7 +21,7 @@ import com.gtm.proxibanquev2.domaine.Conseiller;
 
 public class ConseillerDAO {
 
-	public boolean addConseillerBase(Conseiller conseiller) {//Testé
+	public boolean addConseillerBase(Conseiller conseiller) {// Testé
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -33,7 +33,7 @@ public class ConseillerDAO {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
-			
+
 			String sql = "INSERT INTO `conseiller` " + "(`nom`, `prenom`, `id`,`login`,`mdp`)VALUES" + "(?,?,?,?,?)";
 			pst = cn.prepareStatement(sql);
 
@@ -43,43 +43,6 @@ public class ConseillerDAO {
 			pst.setString(4, conseiller.getLogin());
 			pst.setString(5, conseiller.getMdp());
 
-			pst.executeUpdate(); 
-			return true;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				cn.close();
-				pst.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}
-
-	
-
-	public boolean removeConseilleBase(Conseiller conseiller) { //testé Junit
-		String url = "jdbc:mysql://localhost/proxybanque";
-		String login = "root";
-		String passwd = "";
-		Connection cn = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-
-		try {
-
-			Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection(url, login, passwd);
-			
-			String sql = "DELETE FROM `conseiller` " + "WHERE `id`=?";
-			pst = cn.prepareStatement(sql);
-			pst.setInt(1, conseiller.getId());
-			
 			pst.executeUpdate();
 			return true;
 
@@ -98,7 +61,42 @@ public class ConseillerDAO {
 		return false;
 	}
 
-	public List<Conseiller> getListeConseiller() { //testé en dur
+	public boolean removeConseilleBase(Conseiller conseiller) { // testé Junit
+		String url = "jdbc:mysql://localhost/proxybanque";
+		String login = "root";
+		String passwd = "";
+		Connection cn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+			cn = DriverManager.getConnection(url, login, passwd);
+
+			String sql = "DELETE FROM `conseiller` " + "WHERE `id`=?";
+			pst = cn.prepareStatement(sql);
+			pst.setInt(1, conseiller.getId());
+
+			pst.executeUpdate();
+			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	public List<Conseiller> getListeConseiller() { // testé en dur
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -118,10 +116,11 @@ public class ConseillerDAO {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-			Conseiller tempocons = new Conseiller(rs.getString("nom"),rs.getString("prenom"),rs.getInt("id"),rs.getString("login"),rs.getString("mdp"));
-			listeconseiller.add(tempocons);
+				Conseiller tempocons = new Conseiller(rs.getString("nom"), rs.getString("prenom"), rs.getInt("id"),
+						rs.getString("login"), rs.getString("mdp"));
+				listeconseiller.add(tempocons);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -138,7 +137,7 @@ public class ConseillerDAO {
 
 	}
 
-	public Conseiller getOneConseiller(Conseiller conseiller) { //Testé en dur
+	public Conseiller getOneConseiller(Conseiller conseiller) { // Testé en dur
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -151,22 +150,21 @@ public class ConseillerDAO {
 
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
-			
+
 			String sql = "SELECT * FROM `conseiller` WHERE `id`=?";
 			pst = cn.prepareStatement(sql);
 			pst.setInt(1, conseiller.getId());
 			rs = pst.executeQuery();
 			rs.next();
-			
-			
-			String nom =rs.getString(1);
+
+			String nom = rs.getString(1);
 			String prenom = rs.getString(2);
 			int id = rs.getInt(3);
 			String loginconseiller = rs.getString(4);
 			String mdp = rs.getString(5);
 
 			conseillertrouve = new Conseiller(nom, prenom, id, loginconseiller, mdp);
-			//System.out.println("=====CONSEILLER TROUVER" + conseillertrouve);
+			// System.out.println("=====CONSEILLER TROUVER" + conseillertrouve);
 			return conseillertrouve;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -183,54 +181,64 @@ public class ConseillerDAO {
 		return conseillertrouve;
 
 	}
-	
-	public Conseiller getConseillerFromLogin (String loginEmploye){ //Fonctionne en dur, pas le test
-		
+
+	/**
+	 * Methode du DAO qui permet de recuperer le conseiller enregistre dans la
+	 * base de donnees a partir de son login. Si le login n'existe pas, la
+	 * methode retourne 'null'
+	 * 
+	 * @param loginEmploye
+	 *            Login du conseiller recherche
+	 * @return Retourne le conseiller possedant le login passe en parametre ou
+	 *         retourne null si le login n'est pas attribue a un conseiller
+	 */
+	public Conseiller getConseillerFromLogin(String loginEmploye) {
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
 		String passwd = "";
 		Connection cn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
-		Conseiller conseiller =null;
-		String mdp =null;
+		Conseiller conseiller = null;
+		String mdp = null;
 		String log = null;
 		String nom = null;
 		String prenom = null;
 		int id = 0;
-		
+
 		try {
 
+			// Etape : Connexion
 			Class.forName("com.mysql.jdbc.Driver");
 			cn = DriverManager.getConnection(url, login, passwd);
-			String sql = "SELECT * FROM conseiller WHERE `login`=?";
 
+			// Etape : Excution de la requete
+			String sql = "SELECT * FROM conseiller WHERE `login`=?";
 			pst = cn.prepareStatement(sql);
 			pst.setString(1, loginEmploye);
-
 			rs = pst.executeQuery();
 
-			rs.next();
+			// Etape : Recuperation des valeurs du resultat de la requete
+			if (!rs.next()) {
+				System.out.println("Pas d'enregistrement lie au client");
+				return null;
+			}
 			nom = rs.getString(1);
 			prenom = rs.getString(2);
 			id = rs.getInt(3);
 			log = rs.getString(4);
 			mdp = rs.getString(5);
-			 
 
-			conseiller = new Conseiller(nom, prenom, id,log,mdp);				
-			//System.out.println(conseiller);
+			conseiller = new Conseiller(nom, prenom, id, log, mdp);
+
 			return conseiller;
-
-			
 		} catch (SQLException e) {
 			System.out.println("==========ERREUR 007=============");
-			//e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				// Etape 6 : libérer ressources de la mémoire.
+				// Etape : libérer ressources de la mémoire.
 				cn.close();
 				pst.close();
 			} catch (SQLException e) {
@@ -238,8 +246,6 @@ public class ConseillerDAO {
 			}
 		}
 		return conseiller;
-		
-		
 	}
 
 }

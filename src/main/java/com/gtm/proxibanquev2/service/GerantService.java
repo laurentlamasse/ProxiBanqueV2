@@ -14,10 +14,20 @@ public class GerantService {
 	}
 
 	public List <Conseiller> getListeConseiller(){
-		//TODO a faire
 		List<Conseiller> listeConseiller = null;
 		ConseillerDAO conseillerDao = new ConseillerDAO();
 		listeConseiller= conseillerDao.getListeConseiller();
 		return listeConseiller;		
+	}
+	
+	/**
+	 * Service qui recupere le conseiller enregistre en base a partir de son login
+	 * @param login Login du conseiller
+	 * @return On obtient le conseiller possedant le login indique en parametre.
+	 */
+	public Conseiller getConseillerFromLogin(String login)
+	{
+		ConseillerDAO conseillerDao = new ConseillerDAO();
+		return conseillerDao.getConseillerFromLogin(login);
 	}
 }
