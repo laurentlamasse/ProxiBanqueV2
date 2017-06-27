@@ -19,7 +19,6 @@ import com.gtm.proxibanquev2.domaine.Compte;
 import com.gtm.proxibanquev2.domaine.CompteCourant;
 import com.gtm.proxibanquev2.domaine.CompteEpargne;
 import com.gtm.proxibanquev2.domaine.Conseiller;
-import com.gtm.proxibanquev2.domaine.Virement;
 
 public class CompteDAO {
 
@@ -291,7 +290,7 @@ public class CompteDAO {
 
 	}
 
-	public CompteCourant getCompteCourant(Integer idclient) {
+	public CompteCourant getCompteCourantid(Integer idclient) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";
@@ -330,7 +329,7 @@ public class CompteDAO {
 
 	}
 
-	public CompteEpargne getCompteEpargne(Integer idclient) {
+	public CompteEpargne getCompteEpargneid(Integer idclient) {
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";

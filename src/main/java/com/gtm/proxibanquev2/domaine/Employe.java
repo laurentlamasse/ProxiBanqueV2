@@ -1,5 +1,17 @@
 package com.gtm.proxibanquev2.domaine;
 
+/**
+ * La classe Employe herite de la classe Humain. Elle possede, en plus des attributs 
+ * de cette derniere, les attributs login, mdp, et id.
+ * @author LAB
+ *@param
+ *nom - un String
+ *prenom - un String
+ *id - un int
+ *login - un String
+ *mdp - un String
+ */
+
 public abstract class Employe extends Humain {
 
 	// Proprietes

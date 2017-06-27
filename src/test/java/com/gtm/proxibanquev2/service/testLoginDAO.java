@@ -29,7 +29,6 @@ public class testLoginDAO {
 
 	@After
 	public void tearDownAfter() throws Exception {
-
 		System.out.println("===Fin du test===");
 		conseillertest = null;
 		clientDAO = null;
@@ -37,13 +36,24 @@ public class testLoginDAO {
 	}
 
 	@Test
-	public void testGetConseillerFromLogin() {
+	public void testNotNullGetConseillerFromLogin() {
+		String login = "plop";
+		consDAO= new ConseillerDAO();
+		//conseillertest = new Conseiller("jean", "dupont",15, "jedu", "azerty");
+		System.out.println("===CONSEILLER test");
+		assertNotNull(consDAO.getConseillerFromLogin("jedu"));
+
+		
+	}
+	
+	@Test
+	public void testEqualsGetConseillerFromLogin() {
 		String login = "plop";
 		conseillertest = new Conseiller("Jean", "Hubert", 47, "plop", "plip");
 		System.out.println("===CONSEILLER test");
 
 		
-		assertEquals( conseillertest, consDAO.getConseillerFromLogin("jedu"));
+		assertEquals( conseillertest, consDAO.getConseillerFromLogin("plop"));
 
 		
 	}

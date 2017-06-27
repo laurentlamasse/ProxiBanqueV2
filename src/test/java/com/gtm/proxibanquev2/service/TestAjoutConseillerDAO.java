@@ -39,8 +39,7 @@ public class TestAjoutConseillerDAO {
 		consDAO = null;
 	}
 
-	// public Client(String nom, String prenom, String adresse, String
-	// codepostal, String ville, String telephone, int numeroClient){
+
 
 	@Test
 	public void addConseillerBase() {

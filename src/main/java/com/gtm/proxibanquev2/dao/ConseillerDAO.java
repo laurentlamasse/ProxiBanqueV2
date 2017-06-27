@@ -98,7 +98,7 @@ public class ConseillerDAO {
 		return false;
 	}
 
-	public List<Conseiller> getListeConseiller() { //testé en dur
+	public List<Conseiller> getListeConseiller() { 
 
 		String url = "jdbc:mysql://localhost/proxybanque";
 		String login = "root";

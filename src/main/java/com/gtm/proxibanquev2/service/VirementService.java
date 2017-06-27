@@ -1,31 +1,35 @@
 package com.gtm.proxibanquev2.service;
 
-public  class VirementService{
-	
-	
-	public boolean  effectuerVirement(int compteDebite, int compteCredite, float montant){
-		//TODO:
-		
-		
-		//Find compteDebite
-		//Find compteCredite
-		/*
-		 * public boolean effectuerVirement(int idCompteDeb, int idCompteCred, double montant) {
-		
-		double nouveauSoldeCDeb=conseillerCompteCRUDService.lireById(idCompteDeb).getSolde()-montant;
-		double nouveauSoldeCCred=conseillerCompteCRUDService.lireById(idCompteCred).getSolde()+montant;
-		conseillerCompteCRUDDao.modifierSoldeCompte(idCompteDeb, nouveauSoldeCDeb);
-		conseillerCompteCRUDDao.modifierSoldeCompte(idCompteCred, nouveauSoldeCCred);
-		return true;
-}
-		 * 
-		 * 
-		 * 
-		 * 
-		 * */
-		
-		return true;
+import java.sql.SQLException;
+
+import com.gtm.proxibanquev2.dao.CompteDAO;
+import com.gtm.proxibanquev2.domaine.CompteCourant;
+
+public class VirementService {
+
+	public boolean effectuerVirement(int idclientdebite, int idclientCredite, float montant) {
+		// TODO:
+
+		try {
+			CompteDAO compteDAO = new CompteDAO();
+
+			CompteCourant comtpedebite = compteDAO.getCompteCourantid(idclientdebite);
+			CompteCourant comtpecredite = compteDAO.getCompteCourantid(idclientCredite);
+
+			float nouveaudebit = comtpedebite.getSolde() - montant;
+			float nouveaucredit = comtpedebite.getSolde() + montant;
+
+			compteDAO.modifierCompteCourantMontant(idclientdebite, nouveaudebit);
+			compteDAO.modifierCompteCourantMontant(idclientCredite, nouveaucredit);
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+		return false;
+
 	}
-	 
 
 }

@@ -9,7 +9,6 @@ import com.gtm.proxibanquev2.domaine.Compte;
 import com.gtm.proxibanquev2.domaine.CompteCourant;
 import com.gtm.proxibanquev2.domaine.CompteEpargne;
 import com.gtm.proxibanquev2.domaine.Conseiller;
-import com.gtm.proxibanquev2.domaine.Virement;
 import com.gtm.proxibanquev2.exception.VirementException;
 
 public class ConseillerService {
@@ -53,7 +52,7 @@ public class ConseillerService {
 	 * Cette methode permet d'obtenir la liste des clients presents en base de
 	 * donnees
 	 * 
-	 * @return List
+	 * @return List la liste des clients
 	 */
 	public List<Client> getListeClient() {
 		List<Client> listeClients;
@@ -142,7 +141,7 @@ public class ConseillerService {
 
 	public CompteEpargne getCompteEpargne(int idclient) {
 		CompteDAO compteDao = new CompteDAO();
-		return compteDao.getCompteEpargne(idclient);
+		return compteDao.getCompteEpargneid(idclient);
 	}
 
 	/**
@@ -154,7 +153,7 @@ public class ConseillerService {
 
 	public CompteCourant getCompteCourant(int idclient) {
 		CompteDAO compteDao = new CompteDAO();
-		return compteDao.getCompteCourant(idclient);
+		return compteDao.getCompteCourantid(idclient);
 	}
 
 	

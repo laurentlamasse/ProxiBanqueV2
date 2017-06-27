@@ -17,14 +17,14 @@ import junit.framework.Assert;
 
 public class TestGetConseiller {
 
-	Conseiller conseillertest;
+	Conseiller conseillertest,conseillertest2,conseillertest3,conseillertest4;
 	Client clienttest;
 	ConseillerDAO consDAO;
 
 	@Before
 	public void setUpBefore() throws Exception {
 		System.out.println("===Initiatlisation===");
-		conseillertest = null;
+		conseillertest =  null;
 		clienttest = null;
 		consDAO = null;
 	}
@@ -37,6 +37,10 @@ public class TestGetConseiller {
 		clienttest = null;
 		consDAO = null;
 	}
+	
+
+	
+	
 	@Test
 	public void testnotNullGetOneConseiller() {
 		
@@ -44,7 +48,6 @@ public class TestGetConseiller {
 		conseillertest = new Conseiller("Jean", "Hubert", 113, "plop", "plip");
 		consDAO = new ConseillerDAO();
 		consDAO.addConseillerBase(conseillertest);
-		System.out.println(conseillertest);
 
 		Conseiller conseillerobtenu =  consDAO.getOneConseiller(conseillertest);
 		
@@ -59,15 +62,14 @@ public class TestGetConseiller {
 	public void testEqualsGetOneConseiller() {
 		
 		System.out.println("===test Ajout du conseiller voulu dans la BDD===");
-		conseillertest = new Conseiller("Jean", "Hubert", 113, "plop", "plip");
 		consDAO = new ConseillerDAO();
-		consDAO.addConseillerBase(conseillertest);
+		consDAO.addConseillerBase(conseillertest4);
 		System.out.println(conseillertest);
 
 		Conseiller conseillerobtenu =  consDAO.getOneConseiller(conseillertest);
 		
 		assertEquals( conseillertest, conseillerobtenu);
-		System.out.println("Le assertEquals est renvoyé négatif alors que les objets sont bien identiques, etrange");
+		System.out.println("Il y a besoin de redefinir le Equals des conseillers");
 
 		
 	}

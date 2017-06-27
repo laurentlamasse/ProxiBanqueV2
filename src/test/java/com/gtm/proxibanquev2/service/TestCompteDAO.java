@@ -10,15 +10,19 @@ import org.junit.Test;
 
 import com.gtm.proxibanquev2.dao.CompteDAO;
 import com.gtm.proxibanquev2.domaine.CompteCourant;
+import com.gtm.proxibanquev2.domaine.CompteEpargne;
 
 public class TestCompteDAO {
 	
 	CompteCourant compteCouranttest;
+	CompteEpargne compteEpargnetest;
+
 	CompteDAO compteDAO;
 
 	@Before
 	public  void setUpBefore() throws Exception {
 		compteCouranttest = null;
+		compteEpargnetest = null;
 		compteDAO= null;
 	}
 
@@ -33,7 +37,6 @@ public class TestCompteDAO {
 		 compteCouranttest = new CompteCourant (56894,5000,200,958);
 		 compteDAO= new CompteDAO();
 		 assertTrue("Test d'ajout d'un compteCourant", compteDAO.addCompteCourant(compteCouranttest));
-		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -41,7 +44,22 @@ public class TestCompteDAO {
 		CompteCourant compteCouranttest = new CompteCourant (56894,5000,200,958);
 		 compteDAO= new CompteDAO();
 		 assertTrue("Test d'ajout d'un compteCourant", compteDAO.removeCompteCourant(compteCouranttest));
-		//fail("Not yet implemented");
 	}
+	
+	
+	@Test
+	public void testAddCompteEpargne() {
+		 compteEpargnetest = new CompteEpargne (568475,5000,3,958);
+		 compteDAO= new CompteDAO();
+		 assertTrue("Test d'ajout d'un compteEpargne", compteDAO.addCompteEpargne(compteEpargnetest));
+	}
+
+	@Test
+	public void testRemoveCompteEpargne() {
+		 compteEpargnetest = new CompteEpargne (568475,5000,3,958);
+		 compteDAO= new CompteDAO();
+		 assertTrue("Test de supression d'un compteEpargne", compteDAO.removeCompteEpargne(compteEpargnetest));
+	}
+	
 
 }
