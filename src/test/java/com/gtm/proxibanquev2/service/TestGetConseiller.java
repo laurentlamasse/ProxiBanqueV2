@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.gtm.proxibanquev2.dao.ClientDAO;
@@ -57,7 +58,7 @@ public class TestGetConseiller {
 		
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testEqualsGetOneConseiller() {
 		

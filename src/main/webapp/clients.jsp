@@ -142,7 +142,7 @@
 								{
 									ArrayList<Client> liste = (ArrayList<Client>) session.getAttribute("listeClients");
 									for (Client client : liste) {
-										out.print("<tr>" + "<td><input class=\"checkthis\" type=\"checkbox\" /></td>" + "<td>1</td>"
+										out.print("<tr>" + "<td><input class=\"checkthis\" type=\"checkbox\" /></td>" + "<td>"+ client.getNumeroClient() +"</td>"
 												+ "<td>" + client.getNom() + "</td>" + "<td>" + client.getPrenom() + "</td>" + "<td>"
 												+ client.getAdresse() + "</td>" + "<td>" + client.getCodepostal() + "</td>" + "<td>"
 												+ client.getVille() + "</td>" + "<td>" + client.getTelephone() + "</td>"

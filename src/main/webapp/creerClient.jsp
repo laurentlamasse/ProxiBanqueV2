@@ -94,7 +94,11 @@
 			<div class="corps-entete">CRÉER UN CLIENT</div>
 			<div class="corps-contenu">
 				Remplissez le formulaire suivante pour créer votre nouveau client :
-				<form action="ProxyBanqueV2/AjoutClientServlet" method="post">
+				<form action="AjoutClientServlet" method="POST">
+					<div class="form-group">
+						<label for="createNumeroClient">Numéro</label>
+						<input id="createNumeroClient" class="form-control" name="createNumeroClient" type="number" placeholder="Entrez le numéro du client">
+					</div>
 					<div class="form-group">
 						<label for="createNomClient">Nom</label>
 						<input id="createNomClient" class="form-control" name="createNomClient" type="text" placeholder="Entrez le nom">
@@ -118,6 +122,10 @@
 					<div class="form-group">
 						<label for="createTelClient">Téléphone</label>
 						<input id="createTelClient" class="form-control" name="createTelClient" type="number" placeholder="Entrez le numéro de téléphone">
+					</div>
+					<div class="form-group">
+						<label for="createEmail">Adresse email</label>
+						<input id="createEmail" class="form-control" name="createEmail" type="text" placeholder="Entrez l'adresse email">
 					</div>
 					<div class="button-right">
 					<button id="buttonCreateClient" class="btn btn-primary" type="submit">Créer</button>
