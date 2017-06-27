@@ -6,7 +6,6 @@ import com.gtm.proxibanquev2.dao.ClientDAO;
 import com.gtm.proxibanquev2.dao.CompteDAO;
 import com.gtm.proxibanquev2.dao.ConseillerDAO;
 import com.gtm.proxibanquev2.domaine.Client;
-import com.gtm.proxibanquev2.domaine.Compte;
 import com.gtm.proxibanquev2.domaine.CompteCourant;
 import com.gtm.proxibanquev2.domaine.CompteEpargne;
 import com.gtm.proxibanquev2.domaine.Conseiller;
@@ -83,7 +82,6 @@ public class testCrudDUr {
 		
 		
 		
-		
-
+	
 	}
 }
